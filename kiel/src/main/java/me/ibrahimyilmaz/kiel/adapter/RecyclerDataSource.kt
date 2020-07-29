@@ -9,7 +9,8 @@ import me.ibrahimyilmaz.kiel.item.Renderer
 import java.lang.ref.WeakReference
 
 class RecyclerDataSource<T : Any>(
-    private val renderers: Map<Class<out T>, Renderer<T>>
+    private val renderers: Map<Class<out T>, Renderer<T>>,
+    private val diffCallbackFactory: RecyclerDiffCallbackFactory<T> = RecyclerDiffCallbackFactoryImpl()
 ) {
 
     private val viewTypeToRendererKeyMap = renderers
@@ -46,7 +47,7 @@ class RecyclerDataSource<T : Any>(
         value: List<T>
     ) {
         val calculateDiff = DiffUtil.calculateDiff(
-            RecyclerDiffCallback(
+            diffCallbackFactory.create(
                 _data,
                 value
             )
