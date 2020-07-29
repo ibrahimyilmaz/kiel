@@ -18,5 +18,5 @@ interface Renderer<out T : Any> {
         payload: List<Any>
     ) = render(view, item)
 
-    val itemViewType: Int get() = javaClass.hashCode()
+    val itemViewType: Int
 }
