@@ -1,3 +1,2 @@
 include ':kiel'
 include ':samples'
-rootProject.name = "kiel"
