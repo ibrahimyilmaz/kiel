@@ -1,11 +1,11 @@
-package me.ibrahimyilmaz.kiel.adapter
+package me.ibrahimyilmaz.kiel.datasource
 
 import androidx.recyclerview.widget.RecyclerView
-import me.ibrahimyilmaz.kiel.item.Renderer
+import me.ibrahimyilmaz.kiel.binder.ViewHolderBinder
 import java.lang.ref.WeakReference
 
 abstract class DataSource<T : Any, A : RecyclerView.Adapter<*>>(
-    private val renderers: Map<Class<out T>, Renderer<T>>
+    private val renderers: Map<Class<out T>, ViewHolderBinder<T>>
 ) {
     private val viewTypeToRendererKeyMap = renderers
         .map {

@@ -1,20 +1,23 @@
-package me.ibrahimyilmaz.kiel.adapter
+package me.ibrahimyilmaz.kiel.datasource
 
 import com.google.common.truth.Truth.assertThat
-import me.ibrahimyilmaz.kiel.adapter.util.TestItem
-import me.ibrahimyilmaz.kiel.adapter.util.TestItemRenderer
-import me.ibrahimyilmaz.kiel.adapter.util.TestItemRendererTwo
-import me.ibrahimyilmaz.kiel.adapter.util.TestItemTwo
-import me.ibrahimyilmaz.kiel.item.LayoutResourceRenderer
+import me.ibrahimyilmaz.kiel.datasource.util.TestItem
+import me.ibrahimyilmaz.kiel.datasource.util.TestItemViewHolderBinder
+import me.ibrahimyilmaz.kiel.datasource.util.TestItemViewHolderBinderTwo
+import me.ibrahimyilmaz.kiel.datasource.util.TestItemTwo
+import me.ibrahimyilmaz.kiel.binder.LayoutResourceViewHolderBinder
 import org.junit.Before
 import org.junit.Test
 
 class RecyclerDataSourceTest {
 
-    private val rendererOne: LayoutResourceRenderer<Any> = TestItemRenderer(1)
-    private val rendererTwo: LayoutResourceRenderer<Any> = TestItemRendererTwo(2)
+    private val rendererOne: LayoutResourceViewHolderBinder<Any> =
+        TestItemViewHolderBinder(1)
+    private val rendererTwo: LayoutResourceViewHolderBinder<Any> =
+        TestItemViewHolderBinderTwo(2)
     private val itemOne = TestItem(1)
-    private val itemTwo = TestItemTwo("ibra")
+    private val itemTwo =
+        TestItemTwo("ibra")
     private val itemThree = TestItem(3)
 
     private lateinit var dataSource: RecyclerDataSource<Any>

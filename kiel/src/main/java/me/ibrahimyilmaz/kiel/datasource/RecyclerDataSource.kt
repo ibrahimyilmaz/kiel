@@ -1,13 +1,15 @@
-package me.ibrahimyilmaz.kiel.adapter
+package me.ibrahimyilmaz.kiel.datasource
 
 import androidx.annotation.MainThread
 import androidx.annotation.VisibleForTesting
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import me.ibrahimyilmaz.kiel.item.Renderer
+import me.ibrahimyilmaz.kiel.adapter.RecyclerDiffCallbackFactory
+import me.ibrahimyilmaz.kiel.adapter.RecyclerDiffCallbackFactoryImpl
+import me.ibrahimyilmaz.kiel.binder.ViewHolderBinder
 
 class RecyclerDataSource<T : Any>(
-    private val renderers: Map<Class<out T>, Renderer<T>>,
+    private val renderers: Map<Class<out T>, ViewHolderBinder<T>>,
     private val diffCallbackFactory: RecyclerDiffCallbackFactory<T> = RecyclerDiffCallbackFactoryImpl()
 ) : DataSource<T, RecyclerView.Adapter<*>>(renderers) {
 

@@ -1,11 +1,12 @@
-package me.ibrahimyilmaz.kiel.adapter
+package me.ibrahimyilmaz.kiel.datasource
 
 import androidx.lifecycle.Lifecycle
 import androidx.paging.PagingData
-import me.ibrahimyilmaz.kiel.item.Renderer
+import me.ibrahimyilmaz.kiel.adapter.RecyclerPagerAdapter
+import me.ibrahimyilmaz.kiel.binder.ViewHolderBinder
 
 class RecyclerPagerDataSource<T : Any>(
-    private val renderers: Map<Class<out T>, Renderer<T>>
+    private val renderers: Map<Class<out T>, ViewHolderBinder<T>>
 ) : DataSource<T, RecyclerPagerAdapter<T>>(renderers) {
 
     fun getItemViewType(

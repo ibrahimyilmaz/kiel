@@ -1,8 +1,9 @@
-package me.ibrahimyilmaz.kiel.item
+package me.ibrahimyilmaz.kiel.binder
 
 import androidx.annotation.LayoutRes
 
-interface LayoutResourceRenderer<out T : Any> : Renderer<T> {
+interface LayoutResourceViewHolderBinder<out T : Any> :
+    ViewHolderBinder<T> {
 
     @get:LayoutRes
     val layoutRes: Int

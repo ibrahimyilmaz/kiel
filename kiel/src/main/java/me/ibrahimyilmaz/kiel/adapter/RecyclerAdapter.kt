@@ -2,6 +2,7 @@ package me.ibrahimyilmaz.kiel.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
+import me.ibrahimyilmaz.kiel.datasource.RecyclerDataSource
 
 class RecyclerAdapter<T : Any>(
     private val dataSource: RecyclerDataSource<T>

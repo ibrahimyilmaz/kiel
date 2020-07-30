@@ -3,6 +3,7 @@ package me.ibrahimyilmaz.kiel.adapter
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import me.ibrahimyilmaz.kiel.datasource.RecyclerPagerDataSource
 
 class RecyclerPagerAdapter<T : Any>(
     private val dataSource: RecyclerPagerDataSource<T>,

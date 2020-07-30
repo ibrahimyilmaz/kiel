@@ -1,12 +1,13 @@
-package me.ibrahimyilmaz.kiel.adapter.util
+package me.ibrahimyilmaz.kiel.datasource.util
 
 import android.view.View
 import android.view.ViewGroup
-import me.ibrahimyilmaz.kiel.item.LayoutResourceRenderer
+import me.ibrahimyilmaz.kiel.binder.LayoutResourceViewHolderBinder
+import me.ibrahimyilmaz.kiel.datasource.util.TestItem
 
-class TestItemRenderer(
+class TestItemViewHolderBinder(
     override val layoutRes: Int
-) : LayoutResourceRenderer<TestItem> {
+) : LayoutResourceViewHolderBinder<TestItem> {
 
     override fun createView(parent: ViewGroup): View {
         TODO("Not yet implemented")
