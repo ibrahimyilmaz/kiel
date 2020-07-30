@@ -63,16 +63,3 @@ jobs:
           script: ./gradlew connectedCheck
         env:
           API_LEVEL: ${{ matrix.api-level }}
-
-  robovm:
-    runs-on: macos-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Validate Gradle Wrapper
-        uses: gradle/wrapper-validation-action@v1
-
-      - name: Run Tests
-        run: ./gradlew retrofit:robovm-test:robovmTest
