@@ -5,12 +5,13 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import me.ibrahimyilmaz.kiel.datasource.RecyclerDataSource
 
 class RecyclerAdapter<T : Any>(
-    private val dataSource: RecyclerDataSource<T>
+    private val dataSource: RecyclerDataSource<T>,
+    private val itemIdProvider: ItemIdProvider<T>? = null
 ) : Adapter<RecyclerViewHolder<T>>() {
 
     init {
         dataSource.attachToAdapter(this)
-        setHasStableIds(true)
+        setHasStableIds(itemIdProvider != null)
     }
 
     override fun onCreateViewHolder(
@@ -36,5 +37,21 @@ class RecyclerAdapter<T : Any>(
 
     override fun getItemViewType(position: Int) = dataSource.getItemViewType(position)
 
-    override fun getItemId(position: Int) = dataSource[position].hashCode().toLong()
+    override fun getItemId(position: Int) =
+        itemIdProvider?.provideId(dataSource[position]) ?: super.getItemId(position)
+
+    companion object {
+
+        operator fun <T : Any> invoke(
+            dataSource: RecyclerDataSource<T>,
+            itemIdProvider: ItemIdProviderOperator<T>? = null
+        ) = RecyclerAdapter(
+            dataSource,
+            itemIdProvider?.let {
+                object : ItemIdProvider<T> {
+                    override fun provideId(item: T): Long = it(item)
+                }
+            }
+        )
+    }
 }
