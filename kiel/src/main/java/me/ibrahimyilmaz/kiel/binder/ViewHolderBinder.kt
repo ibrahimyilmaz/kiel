@@ -1,9 +1,9 @@
-package me.ibrahimyilmaz.kiel.item
+package me.ibrahimyilmaz.kiel.binder
 
 import android.view.View
 import android.view.ViewGroup
 
-interface Renderer<out T : Any> {
+interface ViewHolderBinder<out T : Any> {
 
     fun createView(parent: ViewGroup): View
 

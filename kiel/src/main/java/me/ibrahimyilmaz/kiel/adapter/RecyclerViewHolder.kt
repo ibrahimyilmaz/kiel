@@ -2,13 +2,13 @@ package me.ibrahimyilmaz.kiel.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import me.ibrahimyilmaz.kiel.item.Renderer
+import me.ibrahimyilmaz.kiel.binder.ViewHolderBinder
 
 class RecyclerViewHolder<T : Any>(
     parent: ViewGroup,
-    private val renderer: Renderer<T>
-) : RecyclerView.ViewHolder(renderer.createView(parent)) {
+    private val viewHolderBinder: ViewHolderBinder<T>
+) : RecyclerView.ViewHolder(viewHolderBinder.createView(parent)) {
 
-    fun bind(item: T) = renderer.render(itemView, item)
-    fun bind(item: T, payload: List<Any>) = renderer.render(itemView, item, payload)
+    fun bind(item: T) = viewHolderBinder.render(itemView, item)
+    fun bind(item: T, payload: List<Any>) = viewHolderBinder.render(itemView, item, payload)
 }
