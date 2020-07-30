@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import me.ibrahimyilmaz.kiel.item.Renderer
 
 class RecyclerDataSource<T : Any>(
-    private val renderers: Map<Class<out T>, Renderer<T>>
+    private val renderers: Map<Class<out T>, Renderer<T>>,
+    private val diffCallbackFactory: RecyclerDiffCallbackFactory<T> = RecyclerDiffCallbackFactoryImpl()
 ) : DataSource<T, RecyclerView.Adapter<*>>(renderers) {
 
     private val _data = mutableListOf<T>()
@@ -28,7 +29,7 @@ class RecyclerDataSource<T : Any>(
         value: List<T>
     ) {
         val calculateDiff = DiffUtil.calculateDiff(
-            RecyclerDiffCallback(
+            diffCallbackFactory.create(
                 _data,
                 value
             )
