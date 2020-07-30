@@ -26,5 +26,4 @@ ext.versions = [
         mockitoInlineVersion: '3.3.3',
         androidxTestJunit   : '1.1.1',
         espressoVersion     : '3.2.0',
-        robolectricVersion  : '4.3.1',
 ]
