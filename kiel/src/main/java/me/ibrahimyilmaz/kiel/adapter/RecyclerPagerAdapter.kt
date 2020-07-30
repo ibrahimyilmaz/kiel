@@ -11,7 +11,6 @@ class RecyclerPagerAdapter<T : Any>(
 
     init {
         dataSource.attachToAdapter(this)
-        setHasStableIds(true)
     }
 
     override fun onBindViewHolder(holder: RecyclerViewHolder<T>, position: Int) {

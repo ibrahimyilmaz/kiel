@@ -21,6 +21,5 @@ abstract class DataSource<T : Any, A : RecyclerView.Adapter<*>>(
     fun getRendererOf(
         viewType: Int
     ) = requireNotNull(renderers[viewTypeToRendererKeyMap[viewType]])
-
 }
 
