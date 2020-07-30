@@ -35,10 +35,10 @@ jobs:
           java-version: ${{ matrix.java-version }}
 
       - name: Check
-          run: ./gradlew check
+        run: ./gradlew check
 
       - name: Test
-          run: ./gradlew build
+        run: ./gradlew build
 
   android:
     runs-on: macos-latest
