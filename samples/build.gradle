@@ -3,13 +3,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
-
+    compileSdkVersion versions.compileSdk
     defaultConfig {
-        applicationId "me.ibrahimyilmaz.kiel"
-        minSdkVersion 23
-        targetSdkVersion 29
+        applicationId "me.ibrahimyilmaz.kiel.samples"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.compileSdk
         versionCode 1
         versionName "1.0"
 
@@ -26,12 +24,14 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.1'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+    implementation "androidx.core:core-ktx:$versions.androidxCore"
+    implementation "androidx.appcompat:appcompat:$versions.appCompatVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$versions.constraintVersion"
 
+    implementation "androidx.recyclerview:recyclerview:$versions.recyclerViewVersion"
+
+    testImplementation "junit:junit:$versions.junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$versions.androidxTestJunit"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espressoVersion"
 }
