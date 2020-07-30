@@ -1,6 +1,6 @@
 package me.ibrahimyilmaz.kiel.adapter
 
-class RecyclerDiffCallbackFactoryImpl<T : Any>
+internal class RecyclerDiffCallbackFactoryImpl<T : Any>
     : RecyclerDiffCallbackFactory<T> {
 
     override fun create(
