@@ -38,9 +38,11 @@ class Renderer<out T : Any>(
 
     @Suppress("UNCHECKED_CAST")
     private inline val View.viewBinder: ViewBinder<T>
-        get() = (tag ?: {
-            tag = viewBinderIntrospection(this)
-            tag
-        }) as ViewBinder<T>
+        get() {
+            if (tag == null) {
+                tag = viewBinderIntrospection(this)
+            }
+            return tag as ViewBinder<T>
+        }
 }
 
