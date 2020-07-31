@@ -9,7 +9,7 @@ import me.ibrahimyilmaz.kiel.adapter.RecyclerDiffCallbackFactoryImpl
 import me.ibrahimyilmaz.kiel.binder.ViewHolderBinder
 
 class RecyclerDataSource<T : Any>(
-    private val renderers: Map<Class<out T>, ViewHolderBinder<T>>,
+    private val renderers: Map<Class<*>, ViewHolderBinder<T>>,
     private val diffCallbackFactory: RecyclerDiffCallbackFactory<T> = RecyclerDiffCallbackFactoryImpl()
 ) : DataSource<T, RecyclerView.Adapter<*>>(renderers) {
 

@@ -6,7 +6,7 @@ import me.ibrahimyilmaz.kiel.adapter.RecyclerPagerAdapter
 import me.ibrahimyilmaz.kiel.binder.ViewHolderBinder
 
 class RecyclerPagerDataSource<T : Any>(
-    private val renderers: Map<Class<out T>, ViewHolderBinder<T>>
+    private val renderers: Map<Class<*>, ViewHolderBinder<T>>
 ) : DataSource<T, RecyclerPagerAdapter<T>>(renderers) {
 
     fun getItemViewType(

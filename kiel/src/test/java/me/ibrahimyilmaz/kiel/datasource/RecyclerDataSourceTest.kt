@@ -1,19 +1,19 @@
 package me.ibrahimyilmaz.kiel.datasource
 
 import com.google.common.truth.Truth.assertThat
+import me.ibrahimyilmaz.kiel.binder.LayoutResourceViewHolderBinder
 import me.ibrahimyilmaz.kiel.datasource.util.TestItem
+import me.ibrahimyilmaz.kiel.datasource.util.TestItemTwo
 import me.ibrahimyilmaz.kiel.datasource.util.TestItemViewHolderBinder
 import me.ibrahimyilmaz.kiel.datasource.util.TestItemViewHolderBinderTwo
-import me.ibrahimyilmaz.kiel.datasource.util.TestItemTwo
-import me.ibrahimyilmaz.kiel.binder.LayoutResourceViewHolderBinder
 import org.junit.Before
 import org.junit.Test
 
 class RecyclerDataSourceTest {
 
-    private val rendererOne: LayoutResourceViewHolderBinder<Any> =
+    private val viewHolderBinder: LayoutResourceViewHolderBinder<Any> =
         TestItemViewHolderBinder(1)
-    private val rendererTwo: LayoutResourceViewHolderBinder<Any> =
+    private val viewHolderBinderTwo: LayoutResourceViewHolderBinder<Any> =
         TestItemViewHolderBinderTwo(2)
     private val itemOne = TestItem(1)
     private val itemTwo =
@@ -26,8 +26,8 @@ class RecyclerDataSourceTest {
     fun setUp() {
         dataSource = RecyclerDataSource(
             mapOf(
-                TestItem::class.java to rendererOne,
-                TestItemTwo::class.java to rendererTwo
+                TestItem::class.java to viewHolderBinder,
+                TestItemTwo::class.java to viewHolderBinderTwo
             )
         )
 
@@ -37,10 +37,10 @@ class RecyclerDataSourceTest {
     @Test
     fun `Should return correct renderer for the given type`() {
         // WHEN
-        val actualRenderer = dataSource.getRendererOf(rendererOne.itemViewType)
+        val actualRenderer = dataSource.getRendererOf(viewHolderBinder.itemViewType)
 
         // THEN
-        assertThat(actualRenderer).isEqualTo(rendererOne)
+        assertThat(actualRenderer).isEqualTo(viewHolderBinder)
     }
 
     @Test
@@ -49,7 +49,7 @@ class RecyclerDataSourceTest {
         val actualItemViewType = dataSource.getItemViewType(0)
 
         // THEN
-        assertThat(actualItemViewType).isEqualTo(rendererOne.itemViewType)
+        assertThat(actualItemViewType).isEqualTo(viewHolderBinder.itemViewType)
     }
 
     @Test
