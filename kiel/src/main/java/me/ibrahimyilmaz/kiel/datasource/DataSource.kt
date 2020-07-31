@@ -5,7 +5,7 @@ import me.ibrahimyilmaz.kiel.binder.ViewHolderBinder
 import java.lang.ref.WeakReference
 
 abstract class DataSource<T : Any, A : RecyclerView.Adapter<*>>(
-    private val renderers: Map<Class<out T>, ViewHolderBinder<T>>
+    private val renderers: Map<Class<*>, ViewHolderBinder<T>>
 ) {
     private val viewTypeToRendererKeyMap = renderers
         .map {
