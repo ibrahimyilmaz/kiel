@@ -7,11 +7,11 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import kotlinx.coroutines.runBlocking
 import me.ibrahimyilmaz.kiel.adapter.RecyclerPagerAdapter
+import me.ibrahimyilmaz.kiel.renderer.Renderer
 import me.ibrahimyilmaz.kiel.datasource.util.TestItem
-import me.ibrahimyilmaz.kiel.datasource.util.TestItemViewHolderBinder
-import me.ibrahimyilmaz.kiel.datasource.util.TestItemViewHolderBinderTwo
 import me.ibrahimyilmaz.kiel.datasource.util.TestItemTwo
-import me.ibrahimyilmaz.kiel.binder.LayoutResourceViewHolderBinder
+import me.ibrahimyilmaz.kiel.datasource.util.TestItemTwoViewBinder
+import me.ibrahimyilmaz.kiel.datasource.util.TestItemViewBinder
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -23,10 +23,11 @@ class RecyclerPagerDataSourceTest {
 
     @Mock
     private lateinit var adapter: RecyclerPagerAdapter<Any>
-    private val rendererOne: LayoutResourceViewHolderBinder<Any> =
-        TestItemViewHolderBinder(1)
-    private val rendererTwo: LayoutResourceViewHolderBinder<Any> =
-        TestItemViewHolderBinderTwo(2)
+    private val rendererOne: Renderer<Any> =
+        Renderer(TestItem::class.java, 1, ::TestItemViewBinder)
+    private val rendererTwo: Renderer<Any> =
+        Renderer(TestItemTwo::class.java, 2, ::TestItemTwoViewBinder)
+
     private val itemOne = TestItem(1)
 
     private lateinit var dataSource: RecyclerPagerDataSource<Any>
@@ -34,9 +35,9 @@ class RecyclerPagerDataSourceTest {
     @Before
     fun setUp() {
         dataSource = RecyclerPagerDataSource(
-            mapOf(
-                TestItem::class.java to rendererOne,
-                TestItemTwo::class.java to rendererTwo
+            listOf(
+                rendererOne,
+                rendererTwo
             )
         )
         dataSource.attachToAdapter(adapter)

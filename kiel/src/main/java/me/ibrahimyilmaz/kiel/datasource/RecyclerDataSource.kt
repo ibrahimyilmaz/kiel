@@ -6,19 +6,18 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import me.ibrahimyilmaz.kiel.adapter.RecyclerDiffCallbackFactory
 import me.ibrahimyilmaz.kiel.adapter.RecyclerDiffCallbackFactoryImpl
-import me.ibrahimyilmaz.kiel.binder.ViewHolderBinder
+import me.ibrahimyilmaz.kiel.renderer.Renderer
 
 class RecyclerDataSource<T : Any>(
-    private val renderers: Map<Class<*>, ViewHolderBinder<T>>,
+    renderers: List<Renderer<T>>,
     private val diffCallbackFactory: RecyclerDiffCallbackFactory<T> = RecyclerDiffCallbackFactoryImpl()
 ) : DataSource<T, RecyclerView.Adapter<*>>(renderers) {
 
     private val _data = mutableListOf<T>()
 
-
     fun getItemViewType(
         position: Int
-    ) = requireNotNull(renderers[_data[position].javaClass]?.itemViewType)
+    ) = requireNotNull(rendererMap[_data[position].javaClass]?.itemViewType)
 
     operator fun get(
         position: Int
