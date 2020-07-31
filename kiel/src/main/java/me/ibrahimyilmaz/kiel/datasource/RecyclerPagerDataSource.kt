@@ -3,15 +3,15 @@ package me.ibrahimyilmaz.kiel.datasource
 import androidx.lifecycle.Lifecycle
 import androidx.paging.PagingData
 import me.ibrahimyilmaz.kiel.adapter.RecyclerPagerAdapter
-import me.ibrahimyilmaz.kiel.binder.ViewHolderBinder
+import me.ibrahimyilmaz.kiel.renderer.Renderer
 
 class RecyclerPagerDataSource<T : Any>(
-    private val renderers: Map<Class<out T>, ViewHolderBinder<T>>
+    renderers: List<Renderer<T>>
 ) : DataSource<T, RecyclerPagerAdapter<T>>(renderers) {
 
     fun getItemViewType(
         data: T
-    ) = requireNotNull(renderers[data.javaClass]?.itemViewType)
+    ) = requireNotNull(rendererMap[data.javaClass]?.itemViewType)
 
     suspend fun submitData(pagingData: PagingData<T>) {
         recyclerViewAdapter.get()?.submitData(pagingData)

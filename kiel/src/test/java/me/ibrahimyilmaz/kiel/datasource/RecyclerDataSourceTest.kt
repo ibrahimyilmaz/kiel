@@ -1,20 +1,22 @@
 package me.ibrahimyilmaz.kiel.datasource
 
 import com.google.common.truth.Truth.assertThat
+import me.ibrahimyilmaz.kiel.renderer.Renderer
 import me.ibrahimyilmaz.kiel.datasource.util.TestItem
-import me.ibrahimyilmaz.kiel.datasource.util.TestItemViewHolderBinder
-import me.ibrahimyilmaz.kiel.datasource.util.TestItemViewHolderBinderTwo
 import me.ibrahimyilmaz.kiel.datasource.util.TestItemTwo
-import me.ibrahimyilmaz.kiel.binder.LayoutResourceViewHolderBinder
+import me.ibrahimyilmaz.kiel.datasource.util.TestItemTwoViewBinder
+import me.ibrahimyilmaz.kiel.datasource.util.TestItemViewBinder
 import org.junit.Before
 import org.junit.Test
 
 class RecyclerDataSourceTest {
 
-    private val rendererOne: LayoutResourceViewHolderBinder<Any> =
-        TestItemViewHolderBinder(1)
-    private val rendererTwo: LayoutResourceViewHolderBinder<Any> =
-        TestItemViewHolderBinderTwo(2)
+    private val rendererOne: Renderer<Any> =
+        Renderer(TestItem::class.java, 1, ::TestItemViewBinder)
+
+    private val rendererTwo: Renderer<Any> =
+        Renderer(TestItemTwo::class.java, 2, ::TestItemTwoViewBinder)
+
     private val itemOne = TestItem(1)
     private val itemTwo =
         TestItemTwo("ibra")
@@ -25,9 +27,9 @@ class RecyclerDataSourceTest {
     @Before
     fun setUp() {
         dataSource = RecyclerDataSource(
-            mapOf(
-                TestItem::class.java to rendererOne,
-                TestItemTwo::class.java to rendererTwo
+            listOf(
+                rendererOne,
+                rendererTwo
             )
         )
 
