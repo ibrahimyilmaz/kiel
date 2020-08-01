@@ -1,0 +1,53 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion versions.compileSdk
+    defaultConfig {
+        applicationId "me.ibrahimyilmaz.kiel.samples"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.compileSdk
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+    implementation "com.google.android.material:material:$versions.materialVersion"
+    implementation "androidx.core:core-ktx:$versions.androidxCore"
+    implementation "androidx.appcompat:appcompat:$versions.appCompatVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$versions.constraintVersion"
+    implementation "androidx.navigation:navigation-fragment-ktx:$versions.navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$versions.navigationVersion"
+    implementation "androidx.recyclerview:recyclerview:$versions.recyclerViewVersion"
+    implementation project(path: ':kiel')
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$versions.glideVersion"
+    implementation "com.github.florent37:glidepalette:$versions.glidePaletteVersion"
+    kapt "com.github.bumptech.glide:compiler:$versions.glideVersion"
+
+    testImplementation "junit:junit:$versions.junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$versions.androidxTestJunit"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espressoVersion"
+}

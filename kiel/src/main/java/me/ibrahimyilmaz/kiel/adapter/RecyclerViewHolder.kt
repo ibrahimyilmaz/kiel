@@ -1,14 +1,18 @@
 package me.ibrahimyilmaz.kiel.adapter
 
-import android.view.ViewGroup
+import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import me.ibrahimyilmaz.kiel.item.Renderer
 
-class RecyclerViewHolder<T : Any>(
-    parent: ViewGroup,
-    private val renderer: Renderer<T>
-) : RecyclerView.ViewHolder(renderer.createView(parent)) {
+abstract class RecyclerViewHolder<out T : Any>(view: View) : RecyclerView.ViewHolder(view) {
 
-    fun bind(item: T) = renderer.render(itemView, item)
-    fun bind(item: T, payload: List<Any>) = renderer.render(itemView, item, payload)
+    open fun bind(
+        position: Int,
+        item: @UnsafeVariance T
+    ) = Unit
+
+    open fun bind(
+        position: Int,
+        item: @UnsafeVariance T,
+        payloads: List<Any>
+    ) = bind(position, item)
 }

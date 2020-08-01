@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Kiel-Samples</string>
+    <string name="fragment_recyclerviewadapter_example">RecyclerViewAdapter</string>
+</resources>
