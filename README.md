@@ -4,8 +4,8 @@
 Kiel
 -----
 
-![Kiel](https://github.com/ibrahimyilmaz/kiel/blob/ibra/create_readme/art/kiel_icon.svg =100x100)
-  is a `RecyclerView.Adapter` with a minimalist and convenient Kotlin DSL which provides utility on top of Android's normal `RecyclerView.Adapter`.
+<img src="art/kiel_icon.svg" width="100">
+**Kiel** is a `RecyclerView.Adapter` with a minimalist and convenient Kotlin DSL which provides utility on top of Android's normal `RecyclerView.Adapter`.
 
 Most of time:
 - We found ourselves  repeating same boiler plate codes for `RecyclerView.Adapter`.
