@@ -43,7 +43,7 @@ Usage:
                 }
  }
 
-recyclerView.adapter =recyclerViewAdapter
+recyclerView.adapter = recyclerViewAdapter
 ```
 
 Download
