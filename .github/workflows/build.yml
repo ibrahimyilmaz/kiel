@@ -72,7 +72,6 @@ jobs:
     needs:
       - jvm
       - android
-      - robovm
 
     steps:
       - name: Checkout
