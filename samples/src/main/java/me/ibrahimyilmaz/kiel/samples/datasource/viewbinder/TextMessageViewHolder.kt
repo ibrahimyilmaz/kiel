@@ -1,0 +1,13 @@
+package me.ibrahimyilmaz.kiel.samples.datasource.viewbinder
+
+import android.view.View
+import android.widget.TextView
+import me.ibrahimyilmaz.kiel.adapter.RecyclerViewHolder
+import me.ibrahimyilmaz.kiel.samples.R
+import me.ibrahimyilmaz.kiel.samples.datasource.model.MessageViewState.Text
+
+
+class TextMessageViewHolder(view: View) : RecyclerViewHolder<Text>(view) {
+    val messageText = view.findViewById<TextView>(R.id.messageText)
+    val sentAt = view.findViewById<TextView>(R.id.sentAt)
+}
