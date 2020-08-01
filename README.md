@@ -50,7 +50,7 @@ Download
 --------
 
 ```groovy
-implementation 'me.ibrahimyilmaz:kiel:0.99.99'
+implementation 'me.ibrahimyilmaz:kiel:1.0.0'
 ```
 
 License
