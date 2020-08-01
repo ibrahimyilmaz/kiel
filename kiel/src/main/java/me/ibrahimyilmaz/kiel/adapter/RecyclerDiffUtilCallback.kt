@@ -2,7 +2,7 @@ package me.ibrahimyilmaz.kiel.adapter
 
 import androidx.recyclerview.widget.DiffUtil
 
-open class RecyclerDiffCallback<T : Any>(
+open class RecyclerDiffUtilCallback<T : Any>(
     private val oldItems: List<T>,
     private val newItems: List<T>
 ) : DiffUtil.Callback() {

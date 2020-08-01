@@ -9,9 +9,9 @@ fun <T : Any> adaptersOf(
 ): RecyclerViewAdapter<T, RecyclerViewHolder<T>> =
     RecyclerViewAdapterBuilder<T>().apply(function).build()
 
-class RecyclerViewAdapter<T : Any, VH : RecyclerViewHolder<T>>(
+class RecyclerViewAdapter<T : Any, VH : RecyclerViewHolder<T>> private constructor(
     private val recyclerViewHolderManager: RecyclerViewHolderManager<T, VH>,
-    private val diffCallbackFactory: RecyclerDiffCallbackFactory<T> = RecyclerDiffCallbackFactoryImpl()
+    private val diffUtilCallbackFactory: RecyclerDiffUtilCallbackFactory<T> = RecyclerDiffUtilCallbackFactoryImpl()
 ) : RecyclerView.Adapter<VH>() {
 
     private val items = mutableListOf<T>()
@@ -48,9 +48,18 @@ class RecyclerViewAdapter<T : Any, VH : RecyclerViewHolder<T>>(
     ) = recyclerViewHolderManager.getItemViewType(items[position])
 
     fun setData(data: List<T>) {
-        val calculateDiff = DiffUtil.calculateDiff(diffCallbackFactory.create(items, data))
+        val calculateDiff = DiffUtil.calculateDiff(diffUtilCallbackFactory.create(items, data))
         items.clear()
         items += data
         calculateDiff.dispatchUpdatesTo(this)
+    }
+
+    companion object {
+        operator fun <T : Any, VH : RecyclerViewHolder<T>> invoke(
+            recyclerViewHolderManager: RecyclerViewHolderManager<T, VH>,
+            diffUtilCallbackFactory: RecyclerDiffUtilCallbackFactory<T>?
+        ) = diffUtilCallbackFactory?.let {
+            RecyclerViewAdapter(recyclerViewHolderManager, it)
+        } ?: RecyclerViewAdapter(recyclerViewHolderManager)
     }
 }

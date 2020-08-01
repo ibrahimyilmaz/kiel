@@ -1,8 +1,8 @@
 package me.ibrahimyilmaz.kiel.adapter
 
-import android.view.View
 import com.google.common.truth.Truth.assertThat
 import com.nhaarman.mockitokotlin2.mock
+import me.ibrahimyilmaz.kiel.utils.TestRecyclerViewHolder
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.junit.MockitoJUnitRunner
@@ -53,7 +53,7 @@ class RecyclerViewAdapterRegistryBuilderTest {
     fun `Should return a RecyclerViewAdapterRegistry instance when type, layoutResource and viewHolder constructor are provided`() {
         // GIVEN
         val expectedRecyclerViewAdapterRegistry =
-            RecyclerViewAdapterRegistry<Any, TestRecyclerViewHolder>(
+            RecyclerViewAdapterRegistry<Any, RecyclerViewHolder<Any>>(
                 Any::class.java,
                 ::TestRecyclerViewHolder,
                 1
@@ -70,7 +70,10 @@ class RecyclerViewAdapterRegistryBuilderTest {
         val actualRecyclerViewAdapterRegistry = recyclerViewAdapterRegistryBuilder.build()
 
         // THEN
-        assertThat(actualRecyclerViewAdapterRegistry).isEqualTo(expectedRecyclerViewAdapterRegistry)
+        assertRecyclerViewAdapterRegistry(
+            actualRecyclerViewAdapterRegistry,
+            expectedRecyclerViewAdapterRegistry
+        )
     }
 
     @Test
@@ -134,5 +137,40 @@ class RecyclerViewAdapterRegistryBuilderTest {
         assertThat(actualRecyclerViewAdapterRegistry.onViewHolderBoundWithPayload).isNotNull()
     }
 
-    private class TestRecyclerViewHolder(view: View) : RecyclerViewHolder<Any>(view)
+
+    @Test
+    fun `Should return a RecyclerViewAdapterRegistry with diffUtilCallback listener when it is provided`() {
+        // GIVEN
+        val diffUtilCallback =
+            mock<DiffUtilCallback<Any>>()
+
+        val recyclerViewAdapterRegistryBuilder =
+            RecyclerViewAdapterRegistryBuilder<Any>().apply {
+                type { Any::class.java }
+                layoutResource { 1 }
+                viewHolder { ::TestRecyclerViewHolder }
+                diffUtilCallback(diffUtilCallback)
+            }
+
+        // WHEN
+        val actualRecyclerViewAdapterRegistry = recyclerViewAdapterRegistryBuilder.build()
+
+        // THEN
+        assertThat(actualRecyclerViewAdapterRegistry.diffUtilCallbackFactory).isNotNull()
+    }
+
+    private fun <T : Any, VH : RecyclerViewHolder<T>> assertRecyclerViewAdapterRegistry(
+        actualRecyclerViewAdapterRegistry: RecyclerViewAdapterRegistry<T, VH>,
+        expectedRecyclerViewAdapterRegistry: RecyclerViewAdapterRegistry<T, VH>
+    ) {
+        assertThat(actualRecyclerViewAdapterRegistry.type).isEqualTo(
+            expectedRecyclerViewAdapterRegistry.type
+        )
+        assertThat(actualRecyclerViewAdapterRegistry.layoutResource).isEqualTo(
+            expectedRecyclerViewAdapterRegistry.layoutResource
+        )
+        assertThat(actualRecyclerViewAdapterRegistry.viewHolderIntrospection).isEqualTo(
+            expectedRecyclerViewAdapterRegistry.viewHolderIntrospection
+        )
+    }
 }

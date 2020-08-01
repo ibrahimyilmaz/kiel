@@ -20,6 +20,8 @@ class RecyclerViewAdapterBuilder<T : Any> {
     private val viewHolderBoundWithPayloadListeners =
         SimpleArrayMap<Class<*>, OnViewHolderBoundWithPayload<T, RecyclerViewHolder<T>>>()
 
+    private var providedDiffUtilCallbackFactory: RecyclerDiffUtilCallbackFactory<T>? = null
+
     fun register(
         lambda: RecyclerViewAdapterRegistryBuilder<T>.() -> Unit
     ) {
@@ -44,6 +46,10 @@ class RecyclerViewAdapterBuilder<T : Any> {
             onViewHolderBoundWithPayload?.let {
                 viewHolderBoundWithPayloadListeners.put(type, it)
             }
+
+            diffUtilCallbackFactory?.let {
+                providedDiffUtilCallbackFactory = it
+            }
         }
     }
 
@@ -59,6 +65,6 @@ class RecyclerViewAdapterBuilder<T : Any> {
                     viewHolderBoundListeners,
                     viewHolderBoundWithPayloadListeners
                 )
-            )
+            ), null
         )
 }
