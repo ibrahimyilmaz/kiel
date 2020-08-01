@@ -66,9 +66,9 @@ class RecyclerViewAdapterRegistryBuilder<T : Any> {
     }
 
     fun build() = RecyclerViewAdapterRegistry(
-        requireNotNull(type),
-        requireNotNull(viewHolderIntrospection),
-        requireNotNull(layoutResource),
+        requireNotNull(type) { "type should be provided!" },
+        requireNotNull(viewHolderIntrospection) { "viewHolder constructor method should be provided!" },
+        requireNotNull(layoutResource) { "layout resource should be provided!" },
         onViewHolderCreated,
         onViewHolderBound,
         onViewHolderBoundWithPayload
