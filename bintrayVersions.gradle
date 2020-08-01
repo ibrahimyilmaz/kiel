@@ -1,0 +1,17 @@
+ext.bintray = [
+        bintrayRepo       : 'kiel',
+        bintrayName       : 'kiel',
+
+        publishedGroupId  : 'me.ibrahimyilmaz',
+        libraryName       : 'kiel',
+        artifact          : 'kiel',
+
+        libraryDescription: 'Kotlin way of building RecyclerView Adapter 🧩. You do not have to write RecyclerView Adapters again and again and suffer from handling of different view types. Kiel will help you.',
+
+        siteUrl           : 'https://github.com/ibrahimyilmaz/kiel',
+        gitUrl            : 'https://github.com/ibrahimyilmaz/kiel.git',
+
+        developerId       : 'ibrahimyilmaz',
+        developerName     : 'Ibrahim Yilmaz',
+        developerEmail    : 'cs.ibrahimyilmaz@gmail.com'
+]
