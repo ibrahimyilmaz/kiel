@@ -1,4 +1,4 @@
-package me.ibrahimyilmaz.kiel.samples.datasource.model
+package me.ibrahimyilmaz.kiel.samples.adapter.model
 
 sealed class MessageViewState {
 

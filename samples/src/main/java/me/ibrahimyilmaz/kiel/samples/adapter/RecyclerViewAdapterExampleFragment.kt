@@ -1,4 +1,4 @@
-package me.ibrahimyilmaz.kiel.samples.datasource
+package me.ibrahimyilmaz.kiel.samples.adapter
 
 import android.os.Bundle
 import android.util.Log
@@ -8,12 +8,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import me.ibrahimyilmaz.kiel.adapter.adaptersOf
 import me.ibrahimyilmaz.kiel.samples.R
-import me.ibrahimyilmaz.kiel.samples.datasource.model.MessageViewState
-import me.ibrahimyilmaz.kiel.samples.datasource.model.MessageViewState.Text
-import me.ibrahimyilmaz.kiel.samples.datasource.model.MessageViewState.Image
-import me.ibrahimyilmaz.kiel.samples.datasource.model.MessageViewState.Poll
-import me.ibrahimyilmaz.kiel.samples.datasource.model.MessageViewState.Poll.PollOption
-import me.ibrahimyilmaz.kiel.samples.datasource.viewbinder.*
+import me.ibrahimyilmaz.kiel.samples.adapter.model.MessageViewState
+import me.ibrahimyilmaz.kiel.samples.adapter.model.MessageViewState.Text
+import me.ibrahimyilmaz.kiel.samples.adapter.model.MessageViewState.Image
+import me.ibrahimyilmaz.kiel.samples.adapter.model.MessageViewState.Poll
+import me.ibrahimyilmaz.kiel.samples.adapter.model.MessageViewState.Poll.PollOption
+import me.ibrahimyilmaz.kiel.samples.adapter.viewholder.ImageMessageViewHolder
+import me.ibrahimyilmaz.kiel.samples.adapter.viewholder.PollMessageViewHolder
+import me.ibrahimyilmaz.kiel.samples.adapter.viewholder.PollOptionViewHolder
+import me.ibrahimyilmaz.kiel.samples.adapter.viewholder.TextMessageViewHolder
 import me.ibrahimyilmaz.kiel.samples.utils.MarginItemDecoration
 
 class RecyclerViewAdapterExampleFragment : Fragment(R.layout.fragment_recyclerviewadapter_example) {

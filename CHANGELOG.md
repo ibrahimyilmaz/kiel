@@ -7,6 +7,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ### Development
-- `ViewBinder` implementation
-- Changelog, Pull Request, Issue templates added
-- `RecyclerDataSource<T : Any>` and RecyclerPagerDataSource<T : Any> introduced
+- RecyclerViewAdapter and adapterOf builder function introduced.

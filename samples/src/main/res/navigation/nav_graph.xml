@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/dataSourceExample"
-        android:name="me.ibrahimyilmaz.kiel.samples.datasource.RecyclerViewAdapterExampleFragment"
-        android:label="@string/fragment_datasource_example"
+        android:name="me.ibrahimyilmaz.kiel.samples.adapter.RecyclerViewAdapterExampleFragment"
+        android:label="@string/fragment_recyclerviewadapter_example"
         tools:layout="@layout/fragment_recyclerviewadapter_example" />
 </navigation>

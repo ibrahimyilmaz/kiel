@@ -2,5 +2,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/dataSourceExample"
-        android:title="@string/fragment_datasource_example" />
+        android:title="@string/fragment_recyclerviewadapter_example" />
 </menu>
