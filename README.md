@@ -1,11 +1,11 @@
 ![build](https://github.com/ibrahimyilmaz/kiel/workflows/build/badge.svg)
 [ ![Download](https://api.bintray.com/packages/ibrahimyilmaz/kiel/kiel/images/download.svg) ](https://bintray.com/ibrahimyilmaz/kiel/kiel/_latestVersion)
 
-Kiel
------
+## Kiel
+
 Kiel is a `RecyclerView.Adapter` with a minimalist and convenient Kotlin DSL which provides utility on top of Android's normal `RecyclerView.Adapter`.
 
-<img alt="kiel_icon" src="art/kiel_icon.svg" width="250"> 
+<img alt="kiel_icon" src="art/kiel_icon.svg" width="250">
 
 Most of time:
 - We found ourselves  repeating same boiler plate codes for `RecyclerView.Adapter`.
@@ -13,11 +13,38 @@ Most of time:
 
 But now, Kiel may help us to get rid of these problems.
 
-Usage:
------
+## Usage:
+
+#### Basic Usage:
 
 ```kt
- val recyclerViewAdapter = adaptersOf<MessageViewState> {
+ val recyclerViewAdapter = adapterOf<Text> {
+                register {
+                    type { Text::class.java }
+                    layoutResource { R.layout.adapter_message_text_item }
+                    viewHolder { ::TextMessageViewHolder }
+                    onViewHolderCreated<TextMessageViewHolder>{ vh->
+                       //you may handle your on click listener
+                       vh.itemView.setOnClickListener {
+
+                       }
+                    }
+                    onViewHolderBound<Text, TextMessageViewHolder> { vh, _, it ->
+                        vh.messageText.text = it.text
+                        vh.sentAt.text = it.sentAt
+                    }
+                }
+     }
+
+ recyclerView.adapter = recyclerViewAdapter
+ ```
+
+#### Different View Types:
+
+You may register different `ViewHolder`s.
+
+```kt
+ val recyclerViewAdapter = adapterOf<MessageViewState> {
                 register {
                     type { Text::class.java }
                     layoutResource { R.layout.adapter_message_text_item }
@@ -43,14 +70,66 @@ Usage:
                 }
  }
 
+
+recyclerView.adapter = recyclerViewAdapter
+```
+#### Handling Events:
+
+As `ViewHolder` instance is accessible in:
+- `onViewHolderCreated`
+- `onViewHolderBound`
+- `onViewHolderBoundWithPayload`
+
+
+You can handle the events in the same way how you did it before.
+```kt
+ val recyclerViewAdapter = adapterOf<Text> {
+                register {
+                    type { Text::class.java }
+                    layoutResource { R.layout.adapter_message_text_item }
+                    viewHolder { ::TextMessageViewHolder }
+                    onViewHolderCreated<TextMessageViewHolder>{ vh->
+                       vh.itemView.setOnClickListener {
+
+                       }
+                       vh.messageText.addTextChangedListener{text ->
+
+                       }
+                    }
+                    onViewHolderBound<Text, TextMessageViewHolder> { vh, _, it ->
+                        vh.messageText.text = it.text
+                        vh.sentAt.text = it.sentAt
+                    }
+                }
+ }
+
 recyclerView.adapter = recyclerViewAdapter
 ```
 
+
+#### DiffUtil:
+
+You may provide your custom `DiffUtil.ItemCallback` by extending `RecyclerDiffUtilCallback` with `diffUtilCallback`:
+
+```kt
+val recyclerViewAdapter = adapterOf<MessageViewState> {
+                diffUtilCallback{ oldItems, newItems-> RecyclerDiffUtilCallback(oldItems,newItems)}
+                register {
+                    type { Text::class.java }
+                    layoutResource { R.layout.adapter_message_text_item }
+                    viewHolder { ::TextMessageViewHolder }
+                    onViewHolderBound<Text, TextMessageViewHolder> { vh, _, it ->
+                        vh.messageText.text = it.text
+                        vh.sentAt.text = it.sentAt
+                    }
+                }
+
+```
 Download
 --------
 
 ```groovy
-implementation 'me.ibrahimyilmaz:kiel:1.0.1'
+implementation 'me.ibrahimyilmaz:kiel:latestVersion'
 ```
 
 License

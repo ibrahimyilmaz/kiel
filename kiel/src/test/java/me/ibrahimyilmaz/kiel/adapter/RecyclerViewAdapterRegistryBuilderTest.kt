@@ -137,28 +137,6 @@ class RecyclerViewAdapterRegistryBuilderTest {
         assertThat(actualRecyclerViewAdapterRegistry.onViewHolderBoundWithPayload).isNotNull()
     }
 
-
-    @Test
-    fun `Should return a RecyclerViewAdapterRegistry with diffUtilCallback listener when it is provided`() {
-        // GIVEN
-        val diffUtilCallback =
-            mock<DiffUtilCallback<Any>>()
-
-        val recyclerViewAdapterRegistryBuilder =
-            RecyclerViewAdapterRegistryBuilder<Any>().apply {
-                type { Any::class.java }
-                layoutResource { 1 }
-                viewHolder { ::TestRecyclerViewHolder }
-                diffUtilCallback(diffUtilCallback)
-            }
-
-        // WHEN
-        val actualRecyclerViewAdapterRegistry = recyclerViewAdapterRegistryBuilder.build()
-
-        // THEN
-        assertThat(actualRecyclerViewAdapterRegistry.diffUtilCallbackFactory).isNotNull()
-    }
-
     private fun <T : Any, VH : RecyclerViewHolder<T>> assertRecyclerViewAdapterRegistry(
         actualRecyclerViewAdapterRegistry: RecyclerViewAdapterRegistry<T, VH>,
         expectedRecyclerViewAdapterRegistry: RecyclerViewAdapterRegistry<T, VH>
