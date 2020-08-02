@@ -17,7 +17,7 @@ Usage:
 -----
 
 ```kt
- val recyclerViewAdapter = adaptersOf<MessageViewState> {
+ val recyclerViewAdapter = adapterOf<MessageViewState> {
                 register {
                     type { Text::class.java }
                     layoutResource { R.layout.adapter_message_text_item }
@@ -50,7 +50,7 @@ Download
 --------
 
 ```groovy
-implementation 'me.ibrahimyilmaz:kiel:1.0.0'
+implementation 'me.ibrahimyilmaz:kiel:latestVersion'
 ```
 
 License
