@@ -2,7 +2,7 @@
 [ ![Download](https://api.bintray.com/packages/ibrahimyilmaz/kiel/kiel/images/download.svg) ](https://bintray.com/ibrahimyilmaz/kiel/kiel/_latestVersion)
 
 ## Kiel
------
+
 Kiel is a `RecyclerView.Adapter` with a minimalist and convenient Kotlin DSL which provides utility on top of Android's normal `RecyclerView.Adapter`.
 
 <img alt="kiel_icon" src="art/kiel_icon.svg" width="250">
@@ -14,9 +14,9 @@ Most of time:
 But now, Kiel may help us to get rid of these problems.
 
 ## Usage:
------
-#### Basic Usage:
 
+#### Basic Usage:
+--------
 ```kt
  val recyclerViewAdapter = adapterOf<Text> {
                 register {
@@ -40,7 +40,7 @@ But now, Kiel may help us to get rid of these problems.
  ```
 
 #### Different View Types:
-
+--------
 You may register different `ViewHolder`s.
 
 ```kt
@@ -74,7 +74,7 @@ You may register different `ViewHolder`s.
 recyclerView.adapter = recyclerViewAdapter
 ```
 #### Handling Events:
-
+--------
 As `ViewHolder` instance is accessible in:
 - `onViewHolderCreated`
 - `onViewHolderBound`
@@ -109,6 +109,7 @@ recyclerView.adapter = recyclerViewAdapter
 
 
 #### DiffUtil:
+--------
 You may provide your custom `DiffUtil.ItemCallback` by extending `RecyclerDiffUtilCallback` with `diffUtilCallback`:
 
 ```kt
