@@ -8,5 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Development
 
+### Twin Peaks(1.0.1)
+- adaptersOf type corrected.
 ### Twin Peaks(1.0.0)
 - RecyclerViewAdapter and adapterOf builder function introduced.

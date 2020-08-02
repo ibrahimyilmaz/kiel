@@ -1,13 +1,9 @@
 package me.ibrahimyilmaz.kiel.adapter
 
 import android.view.ViewGroup
+import androidx.annotation.MainThread
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-
-fun <T : Any> adaptersOf(
-    function: RecyclerViewAdapterBuilder<T>.() -> Unit
-): RecyclerViewAdapter<T, RecyclerViewHolder<T>> =
-    RecyclerViewAdapterBuilder<T>().apply(function).build()
 
 class RecyclerViewAdapter<T : Any, VH : RecyclerViewHolder<T>> private constructor(
     private val recyclerViewHolderManager: RecyclerViewHolderManager<T, VH>,
@@ -47,6 +43,7 @@ class RecyclerViewAdapter<T : Any, VH : RecyclerViewHolder<T>> private construct
         position: Int
     ) = recyclerViewHolderManager.getItemViewType(items[position])
 
+    @MainThread
     fun setData(data: List<T>) {
         val calculateDiff = DiffUtil.calculateDiff(diffUtilCallbackFactory.create(items, data))
         items.clear()
@@ -55,11 +52,25 @@ class RecyclerViewAdapter<T : Any, VH : RecyclerViewHolder<T>> private construct
     }
 
     companion object {
+        @JvmStatic
         operator fun <T : Any, VH : RecyclerViewHolder<T>> invoke(
             recyclerViewHolderManager: RecyclerViewHolderManager<T, VH>,
             diffUtilCallbackFactory: RecyclerDiffUtilCallbackFactory<T>?
         ) = diffUtilCallbackFactory?.let {
             RecyclerViewAdapter(recyclerViewHolderManager, it)
         } ?: RecyclerViewAdapter(recyclerViewHolderManager)
+
+        @JvmStatic
+        @Deprecated("s plural typo removed", ReplaceWith("adapterOf"), DeprecationLevel.ERROR)
+        inline fun <T : Any> adaptersOf(
+            function: RecyclerViewAdapterBuilder<T>.() -> Unit
+        ): RecyclerViewAdapter<T, RecyclerViewHolder<T>> =
+            RecyclerViewAdapterBuilder<T>().apply(function).build()
+
+        @JvmStatic
+        inline fun <T : Any> adapterOf(
+            function: RecyclerViewAdapterBuilder<T>.() -> Unit
+        ): RecyclerViewAdapter<T, RecyclerViewHolder<T>> =
+            RecyclerViewAdapterBuilder<T>().apply(function).build()
     }
 }

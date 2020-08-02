@@ -6,7 +6,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import me.ibrahimyilmaz.kiel.adapter.adaptersOf
+import me.ibrahimyilmaz.kiel.adapter.RecyclerViewAdapter.Companion.adapterOf
 import me.ibrahimyilmaz.kiel.samples.R
 import me.ibrahimyilmaz.kiel.samples.adapter.model.MessageViewState
 import me.ibrahimyilmaz.kiel.samples.adapter.model.MessageViewState.Text
@@ -28,7 +28,7 @@ class RecyclerViewAdapterExampleFragment : Fragment(R.layout.fragment_recyclervi
         messagesRecyclerView = view.findViewById(R.id.messagesRecyclerView)
 
         val recyclerViewAdapter =
-            adaptersOf<MessageViewState> {
+            adapterOf<MessageViewState> {
                 register {
                     type { Text::class.java }
                     layoutResource { R.layout.adapter_message_text_item }
@@ -67,7 +67,7 @@ class RecyclerViewAdapterExampleFragment : Fragment(R.layout.fragment_recyclervi
                         viewHolder.sentAt.text = poll.sentAt
 
                         val pollOptionsAdapter =
-                            adaptersOf<PollOption> {
+                            adapterOf<PollOption> {
                                 register {
                                     type { PollOption::class.java }
                                     layoutResource { R.layout.adapter_poll_option_item }
