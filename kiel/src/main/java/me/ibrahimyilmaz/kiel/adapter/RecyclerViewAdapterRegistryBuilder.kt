@@ -17,22 +17,12 @@ class RecyclerViewAdapterRegistryBuilder<T : Any> {
     private var onViewHolderBoundWithPayload: OnViewHolderBoundWithPayload<T, RecyclerViewHolder<T>>? =
         null
 
-    private var diffUtilCallbackFactory: RecyclerDiffUtilCallbackFactory<T> =
-        RecyclerDiffUtilCallbackFactoryImpl()
-
     fun type(lambda: () -> Class<*>) {
         this.type = lambda()
     }
 
     fun viewHolder(lambda: () -> KFunction1<View, RecyclerViewHolder<T>>) {
         this.viewHolderIntrospection = lambda()
-    }
-
-    fun diffUtilCallback(lambda: DiffUtilCallback<T>) {
-        this.diffUtilCallbackFactory = object : RecyclerDiffUtilCallbackFactory<T> {
-            override fun create(oldItems: List<T>, newItems: List<T>): RecyclerDiffUtilCallback<T> =
-                lambda(oldItems, newItems)
-        }
     }
 
     fun <VH : RecyclerViewHolder<T>> onViewHolderCreated(lambda: (VH) -> Unit) {
@@ -80,7 +70,6 @@ class RecyclerViewAdapterRegistryBuilder<T : Any> {
         requireNotNull(type) { "type should be provided!" },
         requireNotNull(viewHolderIntrospection) { "viewHolder constructor method should be provided!" },
         requireNotNull(layoutResource) { "layout resource should be provided!" },
-        diffUtilCallbackFactory,
         onViewHolderCreated,
         onViewHolderBound,
         onViewHolderBoundWithPayload
