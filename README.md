@@ -16,7 +16,7 @@ But now, Kiel may help us to get rid of these problems.
 ## Usage:
 
 #### Basic Usage:
---------
+
 ```kt
  val recyclerViewAdapter = adapterOf<Text> {
                 register {
@@ -40,7 +40,7 @@ But now, Kiel may help us to get rid of these problems.
  ```
 
 #### Different View Types:
---------
+
 You may register different `ViewHolder`s.
 
 ```kt
@@ -74,14 +74,14 @@ You may register different `ViewHolder`s.
 recyclerView.adapter = recyclerViewAdapter
 ```
 #### Handling Events:
---------
+
 As `ViewHolder` instance is accessible in:
 - `onViewHolderCreated`
 - `onViewHolderBound`
 - `onViewHolderBoundWithPayload`
 
 
-You can handle the events in same way how you do it before.
+You can handle the events in the same way how you did it before.
 ```kt
  val recyclerViewAdapter = adapterOf<Text> {
                 register {
@@ -89,7 +89,6 @@ You can handle the events in same way how you do it before.
                     layoutResource { R.layout.adapter_message_text_item }
                     viewHolder { ::TextMessageViewHolder }
                     onViewHolderCreated<TextMessageViewHolder>{ vh->
-                       //you may handle your on click listener
                        vh.itemView.setOnClickListener {
 
                        }
@@ -109,7 +108,7 @@ recyclerView.adapter = recyclerViewAdapter
 
 
 #### DiffUtil:
---------
+
 You may provide your custom `DiffUtil.ItemCallback` by extending `RecyclerDiffUtilCallback` with `diffUtilCallback`:
 
 ```kt
