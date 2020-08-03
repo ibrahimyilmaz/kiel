@@ -1,4 +1,4 @@
-package me.ibrahimyilmaz.kiel.adapter
+package me.ibrahimyilmaz.kiel.core
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

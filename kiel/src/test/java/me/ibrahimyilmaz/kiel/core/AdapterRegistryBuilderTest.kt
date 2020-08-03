@@ -2,7 +2,6 @@ package me.ibrahimyilmaz.kiel.core
 
 import com.google.common.truth.Truth.assertThat
 import com.nhaarman.mockitokotlin2.mock
-import me.ibrahimyilmaz.kiel.adapter.*
 import me.ibrahimyilmaz.kiel.utils.TestRecyclerViewHolder
 import org.junit.Test
 import org.junit.runner.RunWith

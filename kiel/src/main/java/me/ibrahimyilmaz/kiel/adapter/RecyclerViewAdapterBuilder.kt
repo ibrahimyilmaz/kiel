@@ -1,6 +1,6 @@
 package me.ibrahimyilmaz.kiel.adapter
 
-import me.ibrahimyilmaz.kiel.core.AdapterBuilder
+import me.ibrahimyilmaz.kiel.core.*
 
 class RecyclerViewAdapterBuilder<T : Any> :
     AdapterBuilder<T, RecyclerViewAdapter<T, RecyclerViewHolder<T>>>() {

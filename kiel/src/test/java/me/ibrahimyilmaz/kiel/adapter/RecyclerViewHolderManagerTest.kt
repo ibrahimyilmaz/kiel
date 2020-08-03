@@ -3,6 +3,10 @@ package me.ibrahimyilmaz.kiel.adapter
 import android.view.ViewGroup
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
+import me.ibrahimyilmaz.kiel.core.RecyclerViewHolder
+import me.ibrahimyilmaz.kiel.core.RecyclerViewHolderFactory
+import me.ibrahimyilmaz.kiel.core.RecyclerViewHolderManager
+import me.ibrahimyilmaz.kiel.core.RecyclerViewHolderRenderer
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.InjectMocks

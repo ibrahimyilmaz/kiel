@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ### Development
-- listAdapter builder function introduced.
+- listAdapterOf builder function introduced.
 
 ### Twin Peaks(1.0.2)
 - diffUtilCallback created

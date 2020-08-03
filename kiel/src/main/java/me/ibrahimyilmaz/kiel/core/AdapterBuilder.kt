@@ -3,7 +3,6 @@ package me.ibrahimyilmaz.kiel.core
 import android.view.View
 import androidx.collection.SimpleArrayMap
 import androidx.recyclerview.widget.RecyclerView.Adapter
-import me.ibrahimyilmaz.kiel.adapter.*
 import kotlin.reflect.KFunction1
 
 abstract class AdapterBuilder<T : Any, A : Adapter<RecyclerViewHolder<T>>> {

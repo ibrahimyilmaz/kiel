@@ -3,7 +3,8 @@ package me.ibrahimyilmaz.kiel.listadapter
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil.ItemCallback
 import androidx.recyclerview.widget.ListAdapter
-import me.ibrahimyilmaz.kiel.adapter.*
+import me.ibrahimyilmaz.kiel.core.RecyclerViewHolder
+import me.ibrahimyilmaz.kiel.core.RecyclerViewHolderManager
 
 class RecyclerViewListAdapter<T : Any, VH : RecyclerViewHolder<T>>(
     private val recyclerViewHolderManager: RecyclerViewHolderManager<T, VH>,

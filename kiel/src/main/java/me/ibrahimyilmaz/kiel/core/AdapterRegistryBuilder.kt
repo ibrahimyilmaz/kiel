@@ -2,7 +2,6 @@ package me.ibrahimyilmaz.kiel.core
 
 import android.view.View
 import androidx.annotation.LayoutRes
-import me.ibrahimyilmaz.kiel.adapter.*
 import kotlin.reflect.KFunction1
 
 

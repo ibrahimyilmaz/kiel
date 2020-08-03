@@ -1,16 +1,15 @@
 package me.ibrahimyilmaz.kiel.listadapter
 
 import androidx.recyclerview.widget.DiffUtil
-import me.ibrahimyilmaz.kiel.adapter.*
-import me.ibrahimyilmaz.kiel.core.AdapterBuilder
+import me.ibrahimyilmaz.kiel.core.*
 
 class RecyclerViewListAdapterBuilder<T : Any> :
     AdapterBuilder<T, RecyclerViewListAdapter<T, RecyclerViewHolder<T>>>() {
 
     private var itemDiffUtil: DiffUtil.ItemCallback<T>? = null
 
-    fun itemDiffUtil(diffUtilItemCallback: DiffUtil.ItemCallback<T>) {
-        this.itemDiffUtil = diffUtilItemCallback
+    fun itemDiffUtil(lambda: () -> DiffUtil.ItemCallback<T>) {
+        this.itemDiffUtil = lambda()
     }
 
     override fun build(): RecyclerViewListAdapter<T, RecyclerViewHolder<T>> =

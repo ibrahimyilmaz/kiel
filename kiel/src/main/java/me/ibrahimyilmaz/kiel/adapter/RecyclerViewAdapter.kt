@@ -4,6 +4,8 @@ import android.view.ViewGroup
 import androidx.annotation.MainThread
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import me.ibrahimyilmaz.kiel.core.RecyclerViewHolder
+import me.ibrahimyilmaz.kiel.core.RecyclerViewHolderManager
 
 class RecyclerViewAdapter<T : Any, VH : RecyclerViewHolder<T>> constructor(
     private val recyclerViewHolderManager: RecyclerViewHolderManager<T, VH>,
