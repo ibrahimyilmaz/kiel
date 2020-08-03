@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import me.ibrahimyilmaz.kiel.core.RecyclerViewHolder
 import me.ibrahimyilmaz.kiel.core.RecyclerViewHolderManager
 
-class RecyclerViewAdapter<T : Any, VH : RecyclerViewHolder<T>> constructor(
+class RecyclerViewAdapter<T : Any, VH : RecyclerViewHolder<T>> private constructor(
     private val recyclerViewHolderManager: RecyclerViewHolderManager<T, VH>,
     private val diffUtilCallbackFactory: RecyclerDiffUtilCallbackFactory<T> = RecyclerDiffUtilCallbackFactoryImpl()
 ) : RecyclerView.Adapter<VH>() {
