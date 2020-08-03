@@ -1,20 +1,21 @@
-package me.ibrahimyilmaz.kiel.adapter
+package me.ibrahimyilmaz.kiel.core
 
 import com.google.common.truth.Truth.assertThat
 import com.nhaarman.mockitokotlin2.mock
+import me.ibrahimyilmaz.kiel.adapter.*
 import me.ibrahimyilmaz.kiel.utils.TestRecyclerViewHolder
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class RecyclerViewAdapterRegistryBuilderTest {
+class AdapterRegistryBuilderTest {
 
     @Test(expected = IllegalArgumentException::class)
     fun `Should throw an Illegal Argument Exception when view type is not provided`() {
         // GIVEN
         val recyclerViewAdapterRegistryBuilder =
-            RecyclerViewAdapterRegistryBuilder<Any>().apply {
+            AdapterRegistryBuilder<Any>().apply {
                 layoutResource { 1 }
                 viewHolder { ::TestRecyclerViewHolder }
             }
@@ -27,7 +28,7 @@ class RecyclerViewAdapterRegistryBuilderTest {
     fun `Should throw an Illegal Argument Exception when layout resource is not provided`() {
         // GIVEN
         val recyclerViewAdapterRegistryBuilder =
-            RecyclerViewAdapterRegistryBuilder<Any>().apply {
+            AdapterRegistryBuilder<Any>().apply {
                 type { Any::class.java }
                 viewHolder { ::TestRecyclerViewHolder }
             }
@@ -40,7 +41,7 @@ class RecyclerViewAdapterRegistryBuilderTest {
     fun `Should throw an Illegal Argument Exception when viewHolder constructor is not provided`() {
         // GIVEN
         val recyclerViewAdapterRegistryBuilder =
-            RecyclerViewAdapterRegistryBuilder<Any>().apply {
+            AdapterRegistryBuilder<Any>().apply {
                 type { Any::class.java }
                 layoutResource { 1 }
             }
@@ -60,7 +61,7 @@ class RecyclerViewAdapterRegistryBuilderTest {
             )
 
         val recyclerViewAdapterRegistryBuilder =
-            RecyclerViewAdapterRegistryBuilder<Any>().apply {
+            AdapterRegistryBuilder<Any>().apply {
                 type { Any::class.java }
                 layoutResource { 1 }
                 viewHolder { ::TestRecyclerViewHolder }
@@ -82,7 +83,7 @@ class RecyclerViewAdapterRegistryBuilderTest {
         val onViewHolderCreatedListener = mock<OnViewHolderCreated<TestRecyclerViewHolder>>()
 
         val recyclerViewAdapterRegistryBuilder =
-            RecyclerViewAdapterRegistryBuilder<Any>().apply {
+            AdapterRegistryBuilder<Any>().apply {
                 type { Any::class.java }
                 layoutResource { 1 }
                 viewHolder { ::TestRecyclerViewHolder }
@@ -102,7 +103,7 @@ class RecyclerViewAdapterRegistryBuilderTest {
         val onViewHolderBoundListener = mock<OnViewHolderBound<Any, TestRecyclerViewHolder>>()
 
         val recyclerViewAdapterRegistryBuilder =
-            RecyclerViewAdapterRegistryBuilder<Any>().apply {
+            AdapterRegistryBuilder<Any>().apply {
                 type { Any::class.java }
                 layoutResource { 1 }
                 viewHolder { ::TestRecyclerViewHolder }
@@ -123,7 +124,7 @@ class RecyclerViewAdapterRegistryBuilderTest {
             mock<OnViewHolderBoundWithPayload<Any, TestRecyclerViewHolder>>()
 
         val recyclerViewAdapterRegistryBuilder =
-            RecyclerViewAdapterRegistryBuilder<Any>().apply {
+            AdapterRegistryBuilder<Any>().apply {
                 type { Any::class.java }
                 layoutResource { 1 }
                 viewHolder { ::TestRecyclerViewHolder }

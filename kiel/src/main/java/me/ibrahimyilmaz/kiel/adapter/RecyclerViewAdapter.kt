@@ -5,7 +5,7 @@ import androidx.annotation.MainThread
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
-class RecyclerViewAdapter<T : Any, VH : RecyclerViewHolder<T>> private constructor(
+class RecyclerViewAdapter<T : Any, VH : RecyclerViewHolder<T>> constructor(
     private val recyclerViewHolderManager: RecyclerViewHolderManager<T, VH>,
     private val diffUtilCallbackFactory: RecyclerDiffUtilCallbackFactory<T> = RecyclerDiffUtilCallbackFactoryImpl()
 ) : RecyclerView.Adapter<VH>() {
@@ -52,6 +52,7 @@ class RecyclerViewAdapter<T : Any, VH : RecyclerViewHolder<T>> private construct
     }
 
     companion object {
+
         @JvmStatic
         operator fun <T : Any, VH : RecyclerViewHolder<T>> invoke(
             recyclerViewHolderManager: RecyclerViewHolderManager<T, VH>,
@@ -59,13 +60,6 @@ class RecyclerViewAdapter<T : Any, VH : RecyclerViewHolder<T>> private construct
         ) = diffUtilCallbackFactory?.let {
             RecyclerViewAdapter(recyclerViewHolderManager, it)
         } ?: RecyclerViewAdapter(recyclerViewHolderManager)
-
-        @JvmStatic
-        @Deprecated("s plural typo removed", ReplaceWith("adapterOf"), DeprecationLevel.ERROR)
-        inline fun <T : Any> adaptersOf(
-            function: RecyclerViewAdapterBuilder<T>.() -> Unit
-        ): RecyclerViewAdapter<T, RecyclerViewHolder<T>> =
-            RecyclerViewAdapterBuilder<T>().apply(function).build()
 
         @JvmStatic
         inline fun <T : Any> adapterOf(
