@@ -12,19 +12,18 @@ class RecyclerViewListAdapterBuilder<T : Any> :
         this.itemDiffUtil = lambda()
     }
 
-    override fun build(): RecyclerViewListAdapter<T, RecyclerViewHolder<T>> =
-        RecyclerViewListAdapter<T, RecyclerViewHolder<T>>(
-            RecyclerViewHolderManager(
-                RecyclerViewHolderFactory(
-                    viewHolderMap,
-                    viewHolderCreatedListeners
-                ),
-                RecyclerViewHolderRenderer(
-                    rendererMap,
-                    viewHolderBoundListeners,
-                    viewHolderBoundWithPayloadListeners
-                )
+    override fun build() = RecyclerViewListAdapter<T, RecyclerViewHolder<T>>(
+        RecyclerViewHolderManager(
+            RecyclerViewHolderFactory(
+                viewHolderMap,
+                viewHolderCreatedListeners
             ),
-            itemDiffUtil
-        )
+            RecyclerViewHolderRenderer(
+                rendererMap,
+                viewHolderBoundListeners,
+                viewHolderBoundWithPayloadListeners
+            )
+        ),
+        itemDiffUtil
+    )
 }

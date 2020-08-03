@@ -18,19 +18,18 @@ class RecyclerViewAdapterBuilder<T : Any> :
         }
     }
 
-    override fun build(): RecyclerViewAdapter<T, RecyclerViewHolder<T>> =
-        RecyclerViewAdapter<T, RecyclerViewHolder<T>>(
-            RecyclerViewHolderManager(
-                RecyclerViewHolderFactory(
-                    viewHolderMap,
-                    viewHolderCreatedListeners
-                ),
-                RecyclerViewHolderRenderer(
-                    rendererMap,
-                    viewHolderBoundListeners,
-                    viewHolderBoundWithPayloadListeners
-                )
+    override fun build() = RecyclerViewAdapter<T, RecyclerViewHolder<T>>(
+        RecyclerViewHolderManager(
+            RecyclerViewHolderFactory(
+                viewHolderMap,
+                viewHolderCreatedListeners
             ),
-            diffUtilCallbackFactory
-        )
+            RecyclerViewHolderRenderer(
+                rendererMap,
+                viewHolderBoundListeners,
+                viewHolderBoundWithPayloadListeners
+            )
+        ),
+        diffUtilCallbackFactory
+    )
 }

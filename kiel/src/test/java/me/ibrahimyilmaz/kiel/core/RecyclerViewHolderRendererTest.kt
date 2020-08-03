@@ -1,13 +1,9 @@
-package me.ibrahimyilmaz.kiel.adapter
+package me.ibrahimyilmaz.kiel.core
 
 import androidx.collection.SimpleArrayMap
 import com.google.common.truth.Truth.assertThat
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
-import me.ibrahimyilmaz.kiel.core.OnViewHolderBound
-import me.ibrahimyilmaz.kiel.core.OnViewHolderBoundWithPayload
-import me.ibrahimyilmaz.kiel.core.RecyclerViewHolder
-import me.ibrahimyilmaz.kiel.core.RecyclerViewHolderRenderer
 import org.junit.Before
 import org.junit.Test
 
