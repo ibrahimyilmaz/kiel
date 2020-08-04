@@ -39,6 +39,11 @@ class RecyclerViewListAdapter<T : Any, VH : RecyclerViewHolder<T>>(
         payloads
     )
 
+
+    override fun getItemViewType(
+        position: Int
+    ) = recyclerViewHolderManager.getItemViewType(getItem(position))
+
     companion object {
 
         @JvmStatic
