@@ -68,7 +68,7 @@ class RecyclerViewListAdapterExampleFragment :
         register {
             type { MessageListItemViewState::class.java }
             layoutResource { R.layout.adapter_message_list_item }
-            viewHolder { ::MessageViewHolder }
+            viewHolder(::MessageViewHolder)
             onViewHolderCreated<MessageViewHolder> { vh ->
                 vh.itemView.setOnLongClickListener {
                     val item = vh.boundItem ?: return@setOnLongClickListener false

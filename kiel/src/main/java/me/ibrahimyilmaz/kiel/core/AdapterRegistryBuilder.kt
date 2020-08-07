@@ -2,12 +2,13 @@ package me.ibrahimyilmaz.kiel.core
 
 import android.view.View
 import androidx.annotation.LayoutRes
+import androidx.recyclerview.widget.RecyclerView
 import kotlin.reflect.KFunction1
 
 
 class AdapterRegistryBuilder<T : Any> {
     private var type: Class<*>? = null
-    private var viewHolderIntrospection: KFunction1<View, RecyclerViewHolder<T>>? = null
+    private var viewHolderIntrospection: ViewHolderFactory<T, RecyclerViewHolder<T>>? = null
 
     @LayoutRes
     private var layoutResource: Int? = null
@@ -21,8 +22,10 @@ class AdapterRegistryBuilder<T : Any> {
         this.type = lambda()
     }
 
-    fun viewHolder(lambda: () -> KFunction1<View, RecyclerViewHolder<T>>) {
-        this.viewHolderIntrospection = lambda()
+    fun viewHolder(lambda: ViewHolderCreator<T>) {
+        this.viewHolderIntrospection = object : ViewHolderFactory<T, RecyclerViewHolder<T>> {
+            override fun instantiate(view: View): RecyclerViewHolder<T> = lambda(view)
+        }
     }
 
     fun <VH : RecyclerViewHolder<T>> onViewHolderCreated(lambda: (VH) -> Unit) {

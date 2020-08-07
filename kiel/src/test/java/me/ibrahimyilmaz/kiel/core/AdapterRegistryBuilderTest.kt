@@ -1,5 +1,6 @@
 package me.ibrahimyilmaz.kiel.core
 
+import android.view.View
 import com.google.common.truth.Truth.assertThat
 import com.nhaarman.mockitokotlin2.mock
 import me.ibrahimyilmaz.kiel.utils.TestRecyclerViewHolder
@@ -16,7 +17,7 @@ class AdapterRegistryBuilderTest {
         val recyclerViewAdapterRegistryBuilder =
             AdapterRegistryBuilder<Any>().apply {
                 layoutResource { 1 }
-                viewHolder { ::TestRecyclerViewHolder }
+                viewHolder(::TestRecyclerViewHolder)
             }
 
         // WHEN
@@ -29,7 +30,7 @@ class AdapterRegistryBuilderTest {
         val recyclerViewAdapterRegistryBuilder =
             AdapterRegistryBuilder<Any>().apply {
                 type { Any::class.java }
-                viewHolder { ::TestRecyclerViewHolder }
+                viewHolder(::TestRecyclerViewHolder)
             }
 
         // WHEN
@@ -53,9 +54,12 @@ class AdapterRegistryBuilderTest {
     fun `Should return a RecyclerViewAdapterRegistry instance when type, layoutResource and viewHolder constructor are provided`() {
         // GIVEN
         val expectedRecyclerViewAdapterRegistry =
-            RecyclerViewAdapterRegistry<Any, RecyclerViewHolder<Any>>(
+            RecyclerViewAdapterRegistry(
                 Any::class.java,
-                ::TestRecyclerViewHolder,
+                object : ViewHolderFactory<Any, RecyclerViewHolder<Any>> {
+                    override fun instantiate(view: View): RecyclerViewHolder<Any> =
+                        TestRecyclerViewHolder(view)
+                },
                 1
             )
 
@@ -63,7 +67,7 @@ class AdapterRegistryBuilderTest {
             AdapterRegistryBuilder<Any>().apply {
                 type { Any::class.java }
                 layoutResource { 1 }
-                viewHolder { ::TestRecyclerViewHolder }
+                viewHolder(::TestRecyclerViewHolder)
             }
 
         // WHEN
@@ -85,7 +89,7 @@ class AdapterRegistryBuilderTest {
             AdapterRegistryBuilder<Any>().apply {
                 type { Any::class.java }
                 layoutResource { 1 }
-                viewHolder { ::TestRecyclerViewHolder }
+                viewHolder(::TestRecyclerViewHolder)
                 onViewHolderCreated(onViewHolderCreatedListener)
             }
 
@@ -105,7 +109,7 @@ class AdapterRegistryBuilderTest {
             AdapterRegistryBuilder<Any>().apply {
                 type { Any::class.java }
                 layoutResource { 1 }
-                viewHolder { ::TestRecyclerViewHolder }
+                viewHolder(::TestRecyclerViewHolder)
                 onViewHolderBound(onViewHolderBoundListener)
             }
 
@@ -126,7 +130,7 @@ class AdapterRegistryBuilderTest {
             AdapterRegistryBuilder<Any>().apply {
                 type { Any::class.java }
                 layoutResource { 1 }
-                viewHolder { ::TestRecyclerViewHolder }
+                viewHolder(::TestRecyclerViewHolder)
                 onViewHolderBoundWithPayload(onViewHolderBoundWithPayloadListener)
             }
 
@@ -146,9 +150,6 @@ class AdapterRegistryBuilderTest {
         )
         assertThat(actualRecyclerViewAdapterRegistry.layoutResource).isEqualTo(
             expectedRecyclerViewAdapterRegistry.layoutResource
-        )
-        assertThat(actualRecyclerViewAdapterRegistry.viewHolderIntrospection).isEqualTo(
-            expectedRecyclerViewAdapterRegistry.viewHolderIntrospection
         )
     }
 }

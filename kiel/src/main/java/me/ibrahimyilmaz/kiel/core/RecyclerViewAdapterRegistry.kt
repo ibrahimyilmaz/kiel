@@ -1,12 +1,10 @@
 package me.ibrahimyilmaz.kiel.core
 
-import android.view.View
 import androidx.annotation.LayoutRes
-import kotlin.reflect.KFunction1
 
 data class RecyclerViewAdapterRegistry<T : Any, VH : RecyclerViewHolder<T>>(
     val type: Class<*>,
-    val viewHolderIntrospection: KFunction1<View, RecyclerViewHolder<T>>,
+    val viewHolderFactory: ViewHolderFactory<T, RecyclerViewHolder<T>>,
     @LayoutRes
     val layoutResource: Int,
     val onViewHolderCreated: OnViewHolderCreated<VH>? = null,
