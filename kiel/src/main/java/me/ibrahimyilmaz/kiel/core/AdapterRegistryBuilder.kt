@@ -1,11 +1,11 @@
-package me.ibrahimyilmaz.kiel.adapter
+package me.ibrahimyilmaz.kiel.core
 
 import android.view.View
 import androidx.annotation.LayoutRes
 import kotlin.reflect.KFunction1
 
 
-class RecyclerViewAdapterRegistryBuilder<T : Any> {
+class AdapterRegistryBuilder<T : Any> {
     private var type: Class<*>? = null
     private var viewHolderIntrospection: KFunction1<View, RecyclerViewHolder<T>>? = null
 

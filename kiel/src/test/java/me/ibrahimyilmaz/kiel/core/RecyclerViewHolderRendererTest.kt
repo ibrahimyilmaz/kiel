@@ -1,4 +1,4 @@
-package me.ibrahimyilmaz.kiel.adapter
+package me.ibrahimyilmaz.kiel.core
 
 import androidx.collection.SimpleArrayMap
 import com.google.common.truth.Truth.assertThat
@@ -30,11 +30,12 @@ class RecyclerViewHolderRendererTest {
         val expectedItemViewType = 1
         setUpItemTypes(Any(), expectedItemViewType)
 
-        recyclerViewHolderRenderer = RecyclerViewHolderRenderer(
-            itemTypes,
-            viewHolderBoundListeners,
-            viewHolderBoundWithPayloadListeners
-        )
+        recyclerViewHolderRenderer =
+            RecyclerViewHolderRenderer(
+                itemTypes,
+                viewHolderBoundListeners,
+                viewHolderBoundWithPayloadListeners
+            )
         // WHEN
         val actualItemViewType = recyclerViewHolderRenderer.getItemViewType(Any())
 
@@ -45,11 +46,12 @@ class RecyclerViewHolderRendererTest {
     @Test
     fun `Should render viewHolder with the given viewHolder and item`() {
         // GIVEN
-        recyclerViewHolderRenderer = RecyclerViewHolderRenderer(
-            itemTypes,
-            viewHolderBoundListeners,
-            viewHolderBoundWithPayloadListeners
-        )
+        recyclerViewHolderRenderer =
+            RecyclerViewHolderRenderer(
+                itemTypes,
+                viewHolderBoundListeners,
+                viewHolderBoundWithPayloadListeners
+            )
         val viewHolder = mock<RecyclerViewHolder<Any>>()
         val position = 1
         val item = Any()
@@ -66,11 +68,12 @@ class RecyclerViewHolderRendererTest {
         // GIVEN
         val onBoundListener = mock<OnViewHolderBound<Any, RecyclerViewHolder<Any>>>()
         setUpViewHolderBoundListeners(Any(), onBoundListener)
-        recyclerViewHolderRenderer = RecyclerViewHolderRenderer(
-            itemTypes,
-            viewHolderBoundListeners,
-            viewHolderBoundWithPayloadListeners
-        )
+        recyclerViewHolderRenderer =
+            RecyclerViewHolderRenderer(
+                itemTypes,
+                viewHolderBoundListeners,
+                viewHolderBoundWithPayloadListeners
+            )
         val viewHolder = mock<RecyclerViewHolder<Any>>()
         val position = 1
         val item = Any()
@@ -85,11 +88,12 @@ class RecyclerViewHolderRendererTest {
     @Test
     fun `Should render viewHolder with the given viewHolder, item and payload`() {
         // GIVEN
-        recyclerViewHolderRenderer = RecyclerViewHolderRenderer(
-            itemTypes,
-            viewHolderBoundListeners,
-            viewHolderBoundWithPayloadListeners
-        )
+        recyclerViewHolderRenderer =
+            RecyclerViewHolderRenderer(
+                itemTypes,
+                viewHolderBoundListeners,
+                viewHolderBoundWithPayloadListeners
+            )
         val viewHolder = mock<RecyclerViewHolder<Any>>()
         val position = 1
         val item = Any()
@@ -107,11 +111,12 @@ class RecyclerViewHolderRendererTest {
         // GIVEN
         val onBoundListener = mock<OnViewHolderBoundWithPayload<Any, RecyclerViewHolder<Any>>>()
         setUpViewHolderBoundWithPayloadListeners(Any(), onBoundListener)
-        recyclerViewHolderRenderer = RecyclerViewHolderRenderer(
-            itemTypes,
-            viewHolderBoundListeners,
-            viewHolderBoundWithPayloadListeners
-        )
+        recyclerViewHolderRenderer =
+            RecyclerViewHolderRenderer(
+                itemTypes,
+                viewHolderBoundListeners,
+                viewHolderBoundWithPayloadListeners
+            )
         val viewHolder = mock<RecyclerViewHolder<Any>>()
         val position = 1
         val item = Any()

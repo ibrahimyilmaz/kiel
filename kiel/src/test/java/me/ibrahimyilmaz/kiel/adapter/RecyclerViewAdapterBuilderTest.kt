@@ -16,7 +16,7 @@ class RecyclerViewAdapterBuilderTest {
     }
 
     @Test
-    fun `Should build an instance of RecyclerViewAdapterBuilder`() {
+    fun `Should build an instance of RecyclerViewAdapter`() {
         // GIVEN
         recyclerViewAdapterBuilder.register {
             layoutResource { 1 }
