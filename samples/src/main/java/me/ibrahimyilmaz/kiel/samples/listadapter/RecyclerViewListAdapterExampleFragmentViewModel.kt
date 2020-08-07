@@ -31,10 +31,19 @@ class RecyclerViewListAdapterExampleFragmentViewModel : ViewModel() {
 
     val messages: LiveData<List<MessageListItemViewState>> get() = _messages
 
-    val showSelectedMessageCount: LiveData<Int> get() = _messages.map { it.count { message -> message.selectionState == MessageSelectionState.Selected } }
+    val showSelectedMessageCount: LiveData<Int>
+        get() = _messages.map {
+            it.count { message ->
+                message.selectionState == MessageSelectionState.Selected
+            }
+        }
 
     val showDeleteAction: LiveData<Boolean>
-        get() = _messages.map { it.any { message -> message.selectionState == MessageSelectionState.Selected } }
+        get() = _messages.map {
+            it.any { message ->
+                message.selectionState == MessageSelectionState.Selected
+            }
+        }
 
     init {
         getMessages()
