@@ -14,10 +14,11 @@ class RecyclerViewAdapter<T : Any, VH : RecyclerViewHolder<T>> private construct
 
     private val items = mutableListOf<T>()
 
+    @Suppress("UNCHECKED_CAST")
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): VH = recyclerViewHolderManager.instantiate(parent, viewType)
+    ): VH = recyclerViewHolderManager.instantiate(parent, viewType) as VH
 
     override fun getItemCount() = items.size
 

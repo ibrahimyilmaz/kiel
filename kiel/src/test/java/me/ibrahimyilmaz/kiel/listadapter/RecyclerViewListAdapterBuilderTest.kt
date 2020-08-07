@@ -19,7 +19,7 @@ class RecyclerViewListAdapterBuilderTest {
         // GIVEN
         recyclerViewListAdapterBuilder.register {
             layoutResource { 1 }
-            viewHolder { ::TestRecyclerViewHolder }
+            viewHolder(::TestRecyclerViewHolder)
             type { Any::class.java }
         }
 

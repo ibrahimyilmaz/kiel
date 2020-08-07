@@ -11,13 +11,14 @@ class RecyclerViewListAdapter<T : Any, VH : RecyclerViewHolder<T>>(
     diffUtilItemCallback: ItemCallback<T> = RecyclerViewItemCallback()
 ) : ListAdapter<T, VH>(diffUtilItemCallback) {
 
+    @Suppress("UNCHECKED_CAST")
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): VH = recyclerViewHolderManager.instantiate(
         parent,
         viewType
-    )
+    ) as VH
 
     override fun onBindViewHolder(
         holder: VH,

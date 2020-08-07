@@ -32,7 +32,7 @@ class RecyclerViewAdapterExampleFragment : Fragment(R.layout.fragment_recyclervi
                 register {
                     type { Text::class.java }
                     layoutResource { R.layout.adapter_message_text_item }
-                    viewHolder { ::TextMessageViewHolder }
+                    viewHolder(::TextMessageViewHolder)
                     onViewHolderBound<Text, TextMessageViewHolder> { vh, _, it ->
                         vh.messageText.text = it.text
                         vh.sentAt.text = it.sentAt
@@ -42,7 +42,7 @@ class RecyclerViewAdapterExampleFragment : Fragment(R.layout.fragment_recyclervi
                 register {
                     type { Image::class.java }
                     layoutResource { R.layout.adapter_message_image_item }
-                    viewHolder { ::ImageMessageViewHolder }
+                    viewHolder(::ImageMessageViewHolder)
                     onViewHolderBound<Image, ImageMessageViewHolder> { vh, i, item ->
                         vh.messageText.text = item.text
                         vh.sentAt.text = item.sentAt
@@ -56,7 +56,7 @@ class RecyclerViewAdapterExampleFragment : Fragment(R.layout.fragment_recyclervi
                 register {
                     type { Poll::class.java }
                     layoutResource { R.layout.adapter_message_poll_item }
-                    viewHolder { ::PollMessageViewHolder }
+                    viewHolder(::PollMessageViewHolder)
 
                     onViewHolderCreated<PollMessageViewHolder> {
                         Log.d("TEST!", "onViewHolderCreated")
@@ -71,7 +71,7 @@ class RecyclerViewAdapterExampleFragment : Fragment(R.layout.fragment_recyclervi
                                 register {
                                     type { PollOption::class.java }
                                     layoutResource { R.layout.adapter_poll_option_item }
-                                    viewHolder { ::PollOptionViewHolder }
+                                    viewHolder(::PollOptionViewHolder)
                                     onViewHolderBound<PollOption, PollOptionViewHolder> { vh, _, item ->
                                         vh.pollOption.text = item.text
                                     }

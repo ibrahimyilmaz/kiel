@@ -22,7 +22,7 @@ But now, Kiel may help us to get rid of these problems.
                 register {
                     type { Text::class.java }
                     layoutResource { R.layout.adapter_message_text_item }
-                    viewHolder { ::TextMessageViewHolder }
+                    viewHolder(::TextMessageViewHolder)
                     onViewHolderCreated<TextMessageViewHolder>{ vh->
                        //you may handle your on click listener
                        vh.itemView.setOnClickListener {
@@ -48,7 +48,7 @@ You may register different `ViewHolder`s.
                 register {
                     type { Text::class.java }
                     layoutResource { R.layout.adapter_message_text_item }
-                    viewHolder { ::TextMessageViewHolder }
+                    viewHolder(::TextMessageViewHolder)
                     onViewHolderBound<Text, TextMessageViewHolder> { vh, _, it ->
                         vh.messageText.text = it.text
                         vh.sentAt.text = it.sentAt
@@ -58,7 +58,7 @@ You may register different `ViewHolder`s.
                 register {
                     type { Image::class.java }
                     layoutResource { R.layout.adapter_message_image_item }
-                    viewHolder { ::ImageMessageViewHolder }
+                    viewHolder(::ImageMessageViewHolder)
                     onViewHolderBound<Image, ImageMessageViewHolder> { vh, _, item ->
                         vh.messageText.text = item.text
                         vh.sentAt.text = item.sentAt
@@ -87,7 +87,7 @@ You can handle the events in the same way how you did it before.
                 register {
                     type { Text::class.java }
                     layoutResource { R.layout.adapter_message_text_item }
-                    viewHolder { ::TextMessageViewHolder }
+                    viewHolder(::TextMessageViewHolder)
                     onViewHolderCreated<TextMessageViewHolder>{ vh->
                        vh.itemView.setOnClickListener {
 
@@ -117,7 +117,7 @@ val recyclerViewAdapter = adapterOf<MessageViewState> {
                 register {
                     type { Text::class.java }
                     layoutResource { R.layout.adapter_message_text_item }
-                    viewHolder { ::TextMessageViewHolder }
+                    viewHolder(::TextMessageViewHolder)
                     onViewHolderBound<Text, TextMessageViewHolder> { vh, _, it ->
                         vh.messageText.text = it.text
                         vh.sentAt.text = it.sentAt

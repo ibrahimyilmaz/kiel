@@ -1,13 +1,11 @@
 package me.ibrahimyilmaz.kiel.core
 
-import android.view.View
 import androidx.collection.SimpleArrayMap
 import androidx.recyclerview.widget.RecyclerView.Adapter
-import kotlin.reflect.KFunction1
 
 abstract class AdapterBuilder<T : Any, A : Adapter<RecyclerViewHolder<T>>> {
     internal val viewHolderMap =
-        SimpleArrayMap<Int, KFunction1<View, RecyclerViewHolder<T>>>()
+        SimpleArrayMap<Int, ViewHolderFactory<T, RecyclerViewHolder<T>>>()
 
     internal val rendererMap =
         SimpleArrayMap<Class<*>, Int>()
@@ -30,7 +28,7 @@ abstract class AdapterBuilder<T : Any, A : Adapter<RecyclerViewHolder<T>>> {
         ) {
             viewHolderMap.put(
                 layoutResource,
-                viewHolderIntrospection
+                viewHolderFactory
             )
             rendererMap.put(type, layoutResource)
 

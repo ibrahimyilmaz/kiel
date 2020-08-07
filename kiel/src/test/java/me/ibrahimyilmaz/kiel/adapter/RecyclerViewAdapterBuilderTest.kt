@@ -20,7 +20,7 @@ class RecyclerViewAdapterBuilderTest {
         // GIVEN
         recyclerViewAdapterBuilder.register {
             layoutResource { 1 }
-            viewHolder { ::TestRecyclerViewHolder }
+            viewHolder(::TestRecyclerViewHolder)
             type { Any::class.java }
         }
         // WHEN
