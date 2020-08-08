@@ -2,7 +2,10 @@ package me.ibrahimyilmaz.kiel.core
 
 import androidx.annotation.LayoutRes
 
-@Deprecated("It belongs to AdapterRegistryBuilder, when AdapterRegistryBuilder is removed, this one also")
+@Deprecated(
+    "It belongs to AdapterRegistryBuilder," +
+        " when AdapterRegistryBuilder is removed, this one also"
+)
 data class RecyclerViewAdapterRegistry<T : Any, VH : RecyclerViewHolder<T>>(
     val type: Class<*>,
     val viewHolderFactory: ViewHolderFactory<T, RecyclerViewHolder<T>>,

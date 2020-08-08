@@ -5,7 +5,6 @@ import me.ibrahimyilmaz.kiel.utils.TestRecyclerViewHolder
 import org.junit.Before
 import org.junit.Test
 
-
 class RecyclerViewAdapterBuilderTest {
 
     private lateinit var recyclerViewAdapterBuilder: RecyclerViewAdapterFactory<Any>

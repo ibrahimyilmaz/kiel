@@ -1,3 +1,4 @@
+apply plugin: "org.jlleitschuh.gradle.ktlint-idea"
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -65,4 +66,26 @@ dependencies {
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockitoKotlinVersion"
     testImplementation "org.mockito:mockito-inline:$versions.mockitoInlineVersion"
     testImplementation "com.google.truth:truth:$versions.truthVersion"
+}
+
+
+ktlint {
+    version = "0.37.1"
+    debug = true
+    verbose = true
+    android = true
+    outputToConsole = true
+    outputColorName = "RED"
+    ignoreFailures = false
+    enableExperimentalRules = true
+    disabledRules = ["final-newline"]
+    reporters {
+        reporter "html"
+        reporter "plain"
+        reporter "checkstyle"
+    }
+    filter {
+        exclude("**/generated/**")
+        include("**/kotlin/**")
+    }
 }

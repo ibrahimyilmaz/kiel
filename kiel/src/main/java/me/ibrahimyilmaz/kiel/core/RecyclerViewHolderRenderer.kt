@@ -3,9 +3,12 @@ package me.ibrahimyilmaz.kiel.core
 import androidx.collection.SimpleArrayMap
 
 class RecyclerViewHolderRenderer<T : Any, VH : RecyclerViewHolder<T>>(
-    private val itemTypes: SimpleArrayMap<Class<*>, Int>,
-    private val bindViewHolderListeners: SimpleArrayMap<Class<*>, OnBindViewHolder<T, RecyclerViewHolder<T>>>,
-    private val viewHolderBoundWithPayloadListeners: SimpleArrayMap<Class<*>, OnBindViewHolderWithPayload<T, RecyclerViewHolder<T>>>
+    private val itemTypes:
+        SimpleArrayMap<Class<*>, Int>,
+    private val bindViewHolderListeners:
+        SimpleArrayMap<Class<*>, OnBindViewHolder<T, RecyclerViewHolder<T>>>,
+    private val viewHolderBoundWithPayloadListeners:
+        SimpleArrayMap<Class<*>, OnBindViewHolderWithPayload<T, RecyclerViewHolder<T>>>
 ) {
 
     fun getItemViewType(t: T) = checkNotNull(itemTypes[t.javaClass]) {
@@ -26,9 +29,9 @@ class RecyclerViewHolderRenderer<T : Any, VH : RecyclerViewHolder<T>>(
         item: T,
         payloads: List<Any>
     ) {
-        if (payloads.isEmpty())
+        if (payloads.isEmpty()) {
             renderViewHolder(holder, position, item)
-        else
+        } else {
             holder.bind(position, item, payloads).also {
                 viewHolderBoundWithPayloadListeners[item.javaClass]?.invoke(
                     holder,
@@ -37,6 +40,6 @@ class RecyclerViewHolderRenderer<T : Any, VH : RecyclerViewHolder<T>>(
                     payloads
                 )
             }
+        }
     }
-
 }

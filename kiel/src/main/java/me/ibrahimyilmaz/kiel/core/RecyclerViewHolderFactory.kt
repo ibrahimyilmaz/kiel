@@ -1,10 +1,8 @@
 package me.ibrahimyilmaz.kiel.core
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.collection.SimpleArrayMap
-import kotlin.reflect.KFunction1
 
 class RecyclerViewHolderFactory<T : Any, VH : RecyclerViewHolder<T>>(
     private val viewHolderMap: SimpleArrayMap<Int, ViewHolderFactory<T, VH>>,
@@ -26,5 +24,4 @@ class RecyclerViewHolderFactory<T : Any, VH : RecyclerViewHolder<T>>(
             viewHolderCreatedListeners[viewType]?.invoke(it)
         }
     }
-
 }

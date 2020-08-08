@@ -4,8 +4,9 @@ import android.view.View
 import androidx.annotation.LayoutRes
 
 @Deprecated(
-    "In general we try to avoid builder classes in Kotlin, as they're not needed and introduce nullability." +
-            " So AdapterRegistryBuilder will be retired soon"
+    "In general we try to avoid builder classes in Kotlin," +
+        " as they're not needed and introduce nullability." +
+        " So AdapterRegistryBuilder will be retired soon"
 )
 class AdapterRegistryBuilder<T : Any> {
     private var type: Class<*>? = null
@@ -16,8 +17,8 @@ class AdapterRegistryBuilder<T : Any> {
 
     private var onViewHolderCreated: OnViewHolderCreated<RecyclerViewHolder<T>>? = null
     private var onViewHolderBound: OnBindViewHolder<T, RecyclerViewHolder<T>>? = null
-    private var onViewHolderBoundWithPayload: OnBindViewHolderWithPayload<T, RecyclerViewHolder<T>>? =
-        null
+    private var onViewHolderBoundWithPayload:
+        OnBindViewHolderWithPayload<T, RecyclerViewHolder<T>>? = null
 
     fun type(lambda: () -> Class<*>) {
         this.type = lambda()
@@ -49,7 +50,9 @@ class AdapterRegistryBuilder<T : Any> {
         }
     }
 
-    fun <IT, VH : RecyclerViewHolder<T>> onViewHolderBoundWithPayload(lambda: (VH, Int, IT, List<Any>) -> Unit) {
+    fun <IT, VH : RecyclerViewHolder<T>> onViewHolderBoundWithPayload(
+        lambda: (VH, Int, IT, List<Any>) -> Unit
+    ) {
         onViewHolderBoundWithPayload =
             object :
                 OnBindViewHolderWithPayload<T, RecyclerViewHolder<T>> {
@@ -65,15 +68,20 @@ class AdapterRegistryBuilder<T : Any> {
             }
     }
 
-
     fun layoutResource(lambda: () -> Int) {
         this.layoutResource = lambda()
     }
 
     fun build() = RecyclerViewAdapterRegistry(
-        requireNotNull(type) { "type should be provided!" },
-        requireNotNull(viewHolderIntrospection) { "viewHolder constructor method should be provided!" },
-        requireNotNull(layoutResource) { "layout resource should be provided!" },
+        requireNotNull(type) {
+            "type should be provided!"
+        },
+        requireNotNull(viewHolderIntrospection) {
+            "viewHolder constructor method should be provided!"
+        },
+        requireNotNull(layoutResource) {
+            "layout resource should be provided!"
+        },
         onViewHolderCreated,
         onViewHolderBound,
         onViewHolderBoundWithPayload
