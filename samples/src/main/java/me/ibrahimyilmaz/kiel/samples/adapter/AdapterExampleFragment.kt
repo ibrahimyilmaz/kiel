@@ -18,7 +18,7 @@ import me.ibrahimyilmaz.kiel.samples.adapter.viewholder.PollOptionViewHolder
 import me.ibrahimyilmaz.kiel.samples.adapter.viewholder.TextMessageViewHolder
 import me.ibrahimyilmaz.kiel.samples.utils.MarginItemDecoration
 
-class RecyclerViewAdapterExampleFragment : Fragment(R.layout.fragment_recyclerviewadapter_example) {
+class AdapterExampleFragment : Fragment(R.layout.fragment_adapter_example) {
 
     private lateinit var messagesRecyclerView: RecyclerView
 
@@ -69,7 +69,7 @@ class RecyclerViewAdapterExampleFragment : Fragment(R.layout.fragment_recyclervi
 
                         vh.pollOptionsRecyclerView.adapter = pollOptionsAdapter
 
-                        pollOptionsAdapter.setData(poll.options)
+                        pollOptionsAdapter.submitList(poll.options)
                     }
                 )
             }
@@ -104,6 +104,6 @@ class RecyclerViewAdapterExampleFragment : Fragment(R.layout.fragment_recyclervi
                 "15:15 PM"
             )
         )
-        recyclerViewAdapter.setData(data)
+        recyclerViewAdapter.submitList(data)
     }
 }

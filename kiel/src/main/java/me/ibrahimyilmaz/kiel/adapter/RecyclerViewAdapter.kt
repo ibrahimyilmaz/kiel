@@ -1,26 +1,25 @@
 package me.ibrahimyilmaz.kiel.adapter
 
 import android.view.ViewGroup
-import androidx.annotation.MainThread
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.DiffUtil.ItemCallback
+import androidx.recyclerview.widget.ListAdapter
 import me.ibrahimyilmaz.kiel.core.RecyclerViewHolder
 import me.ibrahimyilmaz.kiel.core.RecyclerViewHolderManager
+import me.ibrahimyilmaz.kiel.core.RecyclerViewItemCallback
 
-class RecyclerViewAdapter<T : Any, VH : RecyclerViewHolder<T>> private constructor(
+class RecyclerViewAdapter<T : Any, VH : RecyclerViewHolder<T>>(
     private val recyclerViewHolderManager: RecyclerViewHolderManager<T, VH>,
-    private val diffUtilCallbackFactory: RecyclerDiffUtilCallbackFactory<T> = RecyclerDiffUtilCallbackFactoryImpl()
-) : RecyclerView.Adapter<VH>() {
-
-    private val items = mutableListOf<T>()
+    diffUtilItemCallback: ItemCallback<T> = RecyclerViewItemCallback()
+) : ListAdapter<T, VH>(diffUtilItemCallback) {
 
     @Suppress("UNCHECKED_CAST")
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): VH = recyclerViewHolderManager.instantiate(parent, viewType) as VH
-
-    override fun getItemCount() = items.size
+    ): VH = recyclerViewHolderManager.instantiate(
+        parent,
+        viewType
+    ) as VH
 
     override fun onBindViewHolder(
         holder: VH,
@@ -28,7 +27,7 @@ class RecyclerViewAdapter<T : Any, VH : RecyclerViewHolder<T>> private construct
     ) = recyclerViewHolderManager.onBindViewHolder(
         holder,
         position,
-        items[position]
+        getItem(position)
     )
 
     override fun onBindViewHolder(
@@ -38,36 +37,35 @@ class RecyclerViewAdapter<T : Any, VH : RecyclerViewHolder<T>> private construct
     ) = recyclerViewHolderManager.onBindViewHolder(
         holder,
         position,
-        items[position],
+        getItem(position),
         payloads
     )
 
+
     override fun getItemViewType(
         position: Int
-    ) = recyclerViewHolderManager.getItemViewType(items[position])
-
-    @MainThread
-    fun setData(data: List<T>) {
-        val calculateDiff = DiffUtil.calculateDiff(diffUtilCallbackFactory.create(items, data))
-        items.clear()
-        items += data
-        calculateDiff.dispatchUpdatesTo(this)
-    }
+    ) = recyclerViewHolderManager.getItemViewType(getItem(position))
 
     companion object {
 
         @JvmStatic
         operator fun <T : Any, VH : RecyclerViewHolder<T>> invoke(
             recyclerViewHolderManager: RecyclerViewHolderManager<T, VH>,
-            diffUtilCallbackFactory: RecyclerDiffUtilCallbackFactory<T>?
+            diffUtilCallbackFactory: ItemCallback<T>?
         ) = diffUtilCallbackFactory?.let {
-            RecyclerViewAdapter(recyclerViewHolderManager, it)
-        } ?: RecyclerViewAdapter(recyclerViewHolderManager)
+            RecyclerViewAdapter(
+                recyclerViewHolderManager,
+                it
+            )
+        } ?: RecyclerViewAdapter(
+            recyclerViewHolderManager
+        )
 
         @JvmStatic
         inline fun <T : Any> adapterOf(
             function: RecyclerViewAdapterFactory<T>.() -> Unit
         ): RecyclerViewAdapter<T, RecyclerViewHolder<T>> =
-            RecyclerViewAdapterFactory<T>().apply(function).create()
+            RecyclerViewAdapterFactory<T>()
+                .apply(function).create()
     }
 }

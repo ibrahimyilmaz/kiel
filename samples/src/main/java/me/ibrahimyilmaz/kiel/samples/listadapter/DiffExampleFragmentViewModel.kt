@@ -15,7 +15,7 @@ import me.ibrahimyilmaz.kiel.samples.listadapter.usecase.FetchMessagesUseCase
 import me.ibrahimyilmaz.kiel.samples.listadapter.usecase.MessageListItemViewStateMapper
 import me.ibrahimyilmaz.kiel.samples.listadapter.usecase.SelectMessageUseCase
 
-class RecyclerViewListAdapterExampleFragmentViewModel : ViewModel() {
+class DiffExampleFragmentViewModel : ViewModel() {
 
     private val repository = MessageRepository()
     private val viewStateMapper = MessageListItemViewStateMapper()

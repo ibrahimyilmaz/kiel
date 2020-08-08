@@ -109,13 +109,28 @@ You may provide your custom `DiffUtil.ItemCallback` by extending `RecyclerDiffUt
 
 ```kt
 val recyclerViewAdapter = adapterOf<MessageViewState> {
-                diffUtilCallback{ oldItems, newItems-> RecyclerDiffUtilCallback(oldItems,newItems)}
+                diff(
+                    areContentsTheSame = { old, new -> old == new },
+                    areItemsTheSame = { old, new -> old.message.id == new.message.id },
+                    getChangePayload = { oldItem, newItem ->
+                        val diffBundle = Bundle()
+
+                        if (oldItem.selectionState != newItem.selectionState) {
+                            diffBundle.putParcelable(
+                                TextMessageViewHolder.KEY_SELECTION,
+                                newItem.selectionState
+                            )
+                        }
+
+                        if (diffBundle.isEmpty) null else diffBundle
+                    }
+                )
                 register (
                     layoutResource = R.layout.adapter_message_text_item,
                     viewHolder = ::TextMessageViewHolder,
                     onBindViewHolder = { vh, _, it ->
-                        vh.messageText.text = it.text
-                        vh.sentAt.text = it.sentAt
+                        vh.messageText.text = it.message.text
+                        vh.sentAt.text = it.message.sentAt
                     }
                 )
 
