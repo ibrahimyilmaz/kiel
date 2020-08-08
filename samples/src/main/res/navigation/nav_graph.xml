@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/adapterOfExample"
-        android:name="me.ibrahimyilmaz.kiel.samples.adapter.RecyclerViewAdapterExampleFragment"
-        android:label="@string/fragment_recyclerviewadapter_example"
-        tools:layout="@layout/fragment_recyclerviewadapter_example" />
+        android:name="me.ibrahimyilmaz.kiel.samples.adapter.AdapterExampleFragment"
+        android:label="@string/fragment_adapter_example"
+        tools:layout="@layout/fragment_adapter_example" />
 
     <fragment
         android:id="@+id/listAdapterOfExample"
-        android:name="me.ibrahimyilmaz.kiel.samples.listadapter.RecyclerViewListAdapterExampleFragment"
-        android:label="@string/fragment_recyclerviewlistadapter_example"
-        tools:layout="@layout/fragment_recyclerviewlistadapter_example" />
+        android:name="me.ibrahimyilmaz.kiel.samples.listadapter.DiffExampleFragment"
+        android:label="@string/fragment_diff_example"
+        tools:layout="@layout/fragment_diff_example" />
 </navigation>

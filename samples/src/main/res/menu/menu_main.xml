@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/adapterOfExample"
-        android:title="@string/fragment_recyclerviewadapter_example" />
+        android:title="@string/fragment_adapter_example" />
 
     <item
         android:id="@+id/listAdapterOfExample"
-        android:title="@string/fragment_recyclerviewlistadapter_example" />
+        android:title="@string/fragment_diff_example" />
 </menu>

@@ -8,16 +8,15 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
-import me.ibrahimyilmaz.kiel.listadapter.RecyclerViewListAdapter.Companion.listAdapterOf
+import me.ibrahimyilmaz.kiel.adapter.RecyclerViewAdapter.Companion.adapterOf
 import me.ibrahimyilmaz.kiel.samples.R
 import me.ibrahimyilmaz.kiel.samples.listadapter.model.MessageListItemViewState
-import me.ibrahimyilmaz.kiel.samples.listadapter.viewholder.MessageDiffUtilItemCallback
 import me.ibrahimyilmaz.kiel.samples.listadapter.viewholder.MessageViewHolder
 
-class RecyclerViewListAdapterExampleFragment :
-    Fragment(R.layout.fragment_recyclerviewlistadapter_example), MessageActionModeCallbackListener {
+class DiffExampleFragment :
+    Fragment(R.layout.fragment_diff_example), MessageActionModeCallbackListener {
 
-    private val viewModel by viewModels<RecyclerViewListAdapterExampleFragmentViewModel>()
+    private val viewModel by viewModels<DiffExampleFragmentViewModel>()
     private lateinit var messageListRecyclerView: RecyclerView
     private var actionMode: ActionMode? = null
 
@@ -63,8 +62,23 @@ class RecyclerViewListAdapterExampleFragment :
         }
     }
 
-    private val messageListAdapter = listAdapterOf<MessageListItemViewState> {
-        itemDiffUtil(::MessageDiffUtilItemCallback)
+    private val messageListAdapter = adapterOf<MessageListItemViewState> {
+        diff(
+            areContentsTheSame = { old, new -> old == new },
+            areItemsTheSame = { old, new -> old.message.id == new.message.id },
+            getChangePayload = { oldItem, newItem ->
+                val diffBundle = Bundle()
+
+                if (oldItem.selectionState != newItem.selectionState) {
+                    diffBundle.putParcelable(
+                        MessageViewHolder.KEY_SELECTION,
+                        newItem.selectionState
+                    )
+                }
+
+                if (diffBundle.isEmpty) null else diffBundle
+            }
+        )
         register(
             layoutResource = R.layout.adapter_message_list_item,
             viewHolder = ::MessageViewHolder,

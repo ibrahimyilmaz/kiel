@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Kiel-Samples</string>
-    <string name="fragment_recyclerviewadapter_example">adapterOf</string>
-    <string name="fragment_recyclerviewlistadapter_example">listAdapterOf</string>
-    <string name="fragment_recyclerviewlistadapter_example_delete_action">Delete</string>
+    <string name="fragment_adapter_example">adapterOf</string>
+    <string name="fragment_diff_example">listAdapterOf</string>
+    <string name="fragment_diff_example_delete_action">Delete</string>
 </resources>

@@ -1,4 +1,4 @@
-package me.ibrahimyilmaz.kiel.listadapter
+package me.ibrahimyilmaz.kiel.core
 
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.DiffUtil
