@@ -18,11 +18,11 @@ class RecyclerViewAdapterBuilderTest {
     @Test
     fun `Should build an instance of RecyclerViewAdapter`() {
         // GIVEN
-        recyclerViewAdapterBuilder.register {
-            layoutResource { 1 }
-            viewHolder(::TestRecyclerViewHolder)
-            type { Any::class.java }
-        }
+        recyclerViewAdapterBuilder.register(
+            viewHolder = ::TestRecyclerViewHolder,
+            layoutResource = 1
+        )
+
         // WHEN
         val adapter = recyclerViewAdapterBuilder.create()
 
