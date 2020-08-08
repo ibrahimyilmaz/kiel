@@ -1,13 +1,13 @@
 package me.ibrahimyilmaz.kiel.adapter
 
-import me.ibrahimyilmaz.kiel.core.AdapterBuilder
+import me.ibrahimyilmaz.kiel.core.AdapterFactory
 import me.ibrahimyilmaz.kiel.core.RecyclerViewHolder
 import me.ibrahimyilmaz.kiel.core.RecyclerViewHolderFactory
 import me.ibrahimyilmaz.kiel.core.RecyclerViewHolderManager
 import me.ibrahimyilmaz.kiel.core.RecyclerViewHolderRenderer
 
-class RecyclerViewAdapterBuilder<T : Any> :
-    AdapterBuilder<T, RecyclerViewAdapter<T, RecyclerViewHolder<T>>>() {
+class RecyclerViewAdapterFactory<T : Any> :
+    AdapterFactory<T, RecyclerViewAdapter<T, RecyclerViewHolder<T>>>() {
 
     private var diffUtilCallbackFactory: RecyclerDiffUtilCallbackFactory<T>? = null
 
@@ -18,16 +18,16 @@ class RecyclerViewAdapterBuilder<T : Any> :
         }
     }
 
-    override fun build() = RecyclerViewAdapter<T, RecyclerViewHolder<T>>(
+    override fun create() = RecyclerViewAdapter<T, RecyclerViewHolder<T>>(
         RecyclerViewHolderManager(
             RecyclerViewHolderFactory(
                 viewHolderMap,
                 viewHolderCreatedListeners
             ),
             RecyclerViewHolderRenderer(
-                rendererMap,
-                viewHolderBoundListeners,
-                viewHolderBoundWithPayloadListeners
+                layoutResourceMap,
+                onBindViewHolderListeners,
+                onBindViewHolderWithPayloadListeners
             )
         ),
         diffUtilCallbackFactory

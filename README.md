@@ -19,21 +19,20 @@ But now, Kiel may help us to get rid of these problems.
 
 ```kt
  val recyclerViewAdapter = adapterOf<Text> {
-                register {
-                    type { Text::class.java }
-                    layoutResource { R.layout.adapter_message_text_item }
-                    viewHolder(::TextMessageViewHolder)
-                    onViewHolderCreated<TextMessageViewHolder>{ vh->
+                register(
+                    layoutResource = R.layout.adapter_message_text_item,
+                    viewHolder = ::TextMessageViewHolder,
+                    onViewHolderCreated = { vh->
                        //you may handle your on click listener
                        vh.itemView.setOnClickListener {
 
                        }
-                    }
-                    onViewHolderBound<Text, TextMessageViewHolder> { vh, _, it ->
+                    },
+                    onBindViewHolder = { vh, _, it ->
                         vh.messageText.text = it.text
                         vh.sentAt.text = it.sentAt
                     }
-                }
+                )
      }
 
  recyclerView.adapter = recyclerViewAdapter
@@ -45,21 +44,19 @@ You may register different `ViewHolder`s.
 
 ```kt
  val recyclerViewAdapter = adapterOf<MessageViewState> {
-                register {
-                    type { Text::class.java }
-                    layoutResource { R.layout.adapter_message_text_item }
-                    viewHolder(::TextMessageViewHolder)
-                    onViewHolderBound<Text, TextMessageViewHolder> { vh, _, it ->
+                register(
+                    layoutResource = R.layout.adapter_message_text_item,
+                    viewHolder = ::TextMessageViewHolder,
+                    onBindViewHolder = { vh, _, it ->
                         vh.messageText.text = it.text
                         vh.sentAt.text = it.sentAt
                     }
-                }
+                )
 
-                register {
-                    type { Image::class.java }
-                    layoutResource { R.layout.adapter_message_image_item }
-                    viewHolder(::ImageMessageViewHolder)
-                    onViewHolderBound<Image, ImageMessageViewHolder> { vh, _, item ->
+                register(
+                    layoutResource = R.layout.adapter_message_image_item,
+                    viewHolder = ::ImageMessageViewHolder,
+                    onBindViewHolder = { vh, _, item ->
                         vh.messageText.text = item.text
                         vh.sentAt.text = item.sentAt
 
@@ -67,7 +64,7 @@ You may register different `ViewHolder`s.
                             .load(item.imageUrl)
                             .into(vh.messageImage)
                     }
-                }
+                )
  }
 
 
@@ -77,30 +74,29 @@ recyclerView.adapter = recyclerViewAdapter
 
 As `ViewHolder` instance is accessible in:
 - `onViewHolderCreated`
-- `onViewHolderBound`
-- `onViewHolderBoundWithPayload`
+- `onBindViewHolder`
+- `onBindViewHolderWithPayload`
 
 
 You can handle the events in the same way how you did it before.
 ```kt
  val recyclerViewAdapter = adapterOf<Text> {
-                register {
-                    type { Text::class.java }
-                    layoutResource { R.layout.adapter_message_text_item }
-                    viewHolder(::TextMessageViewHolder)
-                    onViewHolderCreated<TextMessageViewHolder>{ vh->
+                register(
+                    layoutResource = R.layout.adapter_message_text_it,
+                    viewHolder = ::TextMessageViewHolder,
+                    onViewHolderCreated = { vh->
                        vh.itemView.setOnClickListener {
 
                        }
                        vh.messageText.addTextChangedListener{text ->
 
                        }
-                    }
-                    onViewHolderBound<Text, TextMessageViewHolder> { vh, _, it ->
+                    },
+                    onBindViewHolder = { vh, _, it ->
                         vh.messageText.text = it.text
                         vh.sentAt.text = it.sentAt
                     }
-                }
+                )
  }
 
 recyclerView.adapter = recyclerViewAdapter
@@ -114,15 +110,14 @@ You may provide your custom `DiffUtil.ItemCallback` by extending `RecyclerDiffUt
 ```kt
 val recyclerViewAdapter = adapterOf<MessageViewState> {
                 diffUtilCallback{ oldItems, newItems-> RecyclerDiffUtilCallback(oldItems,newItems)}
-                register {
-                    type { Text::class.java }
-                    layoutResource { R.layout.adapter_message_text_item }
-                    viewHolder(::TextMessageViewHolder)
-                    onViewHolderBound<Text, TextMessageViewHolder> { vh, _, it ->
+                register (
+                    layoutResource = R.layout.adapter_message_text_item,
+                    viewHolder = ::TextMessageViewHolder,
+                    onBindViewHolder = { vh, _, it ->
                         vh.messageText.text = it.text
                         vh.sentAt.text = it.sentAt
                     }
-                }
+                )
 
 ```
 Download

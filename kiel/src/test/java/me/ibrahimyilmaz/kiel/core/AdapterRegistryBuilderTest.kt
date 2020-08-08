@@ -103,7 +103,7 @@ class AdapterRegistryBuilderTest {
     @Test
     fun `Should return a RecyclerViewAdapterRegistry with OnViewHolderBound listener when it is provided`() {
         // GIVEN
-        val onViewHolderBoundListener = mock<OnViewHolderBound<Any, TestRecyclerViewHolder>>()
+        val onViewHolderBoundListener = mock<OnBindViewHolder<Any, TestRecyclerViewHolder>>()
 
         val recyclerViewAdapterRegistryBuilder =
             AdapterRegistryBuilder<Any>().apply {
@@ -117,14 +117,14 @@ class AdapterRegistryBuilderTest {
         val actualRecyclerViewAdapterRegistry = recyclerViewAdapterRegistryBuilder.build()
 
         // THEN
-        assertThat(actualRecyclerViewAdapterRegistry.onViewHolderBound).isNotNull()
+        assertThat(actualRecyclerViewAdapterRegistry.onBindViewHolder).isNotNull()
     }
 
     @Test
     fun `Should return a RecyclerViewAdapterRegistry with OnViewHolderBoundWithPayload listener when it is provided`() {
         // GIVEN
         val onViewHolderBoundWithPayloadListener =
-            mock<OnViewHolderBoundWithPayload<Any, TestRecyclerViewHolder>>()
+            mock<OnBindViewHolderWithPayload<Any, TestRecyclerViewHolder>>()
 
         val recyclerViewAdapterRegistryBuilder =
             AdapterRegistryBuilder<Any>().apply {
