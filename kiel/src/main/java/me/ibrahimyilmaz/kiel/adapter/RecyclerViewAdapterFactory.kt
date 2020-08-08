@@ -7,6 +7,10 @@ import me.ibrahimyilmaz.kiel.core.RecyclerViewHolderFactory
 import me.ibrahimyilmaz.kiel.core.RecyclerViewHolderManager
 import me.ibrahimyilmaz.kiel.core.RecyclerViewHolderRenderer
 
+typealias AreItemsTheSame<T> = (old: T, new: T) -> Boolean
+typealias AreContentsTheSame<T> = (old: T, new: T) -> Boolean
+typealias GetChangePayload<T> = (oldItem: T, newItem: T) -> Any?
+
 class RecyclerViewAdapterFactory<T : Any> :
     AdapterFactory<T, RecyclerViewAdapter<T, RecyclerViewHolder<T>>>() {
 
@@ -17,9 +21,9 @@ class RecyclerViewAdapterFactory<T : Any> :
     }
 
     fun diff(
-        areItemsTheSame: (old: T, new: T) -> Boolean,
-        areContentsTheSame: (old: T, new: T) -> Boolean,
-        getChangePayload: ((oldItem: T, newItem: T) -> Any?)? = null
+        areItemsTheSame: AreItemsTheSame<T>,
+        areContentsTheSame: AreContentsTheSame<T>,
+        getChangePayload: GetChangePayload<T>? = null
     ) {
         itemDiffUtil = object : DiffUtil.ItemCallback<T>() {
             override fun areItemsTheSame(
@@ -37,7 +41,6 @@ class RecyclerViewAdapterFactory<T : Any> :
                     oldItem,
                     newItem
                 )
-
         }
     }
 
