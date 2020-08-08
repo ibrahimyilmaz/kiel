@@ -1,17 +1,17 @@
 package me.ibrahimyilmaz.kiel.samples
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.annotation.IdRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.navigation.ui.navigateUp
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -35,13 +35,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun findNavController(
         @Suppress("SameParameterValue") @IdRes id: Int
-    ) = (supportFragmentManager.findFragmentById(id)
-            as NavHostFragment).navController
+    ) = (supportFragmentManager.findFragmentById(id) as NavHostFragment).navController
 
     override fun onOptionsItemSelected(item: MenuItem) =
         item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
 
     override fun onSupportNavigateUp() =
-        navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
+        navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
 }

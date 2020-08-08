@@ -69,16 +69,17 @@ abstract class AdapterFactory<T : Any, A : Adapter<RecyclerViewHolder<T>>> {
     }
 
     @Deprecated(
-        "In general we try to avoid builder classes in Kotlin, as they're not needed and introduce nullability." +
-                " So AdapterRegistryBuilder will be retired soon",
+        "In general we try to avoid builder classes in Kotlin," +
+            " as they're not needed and introduce nullability." +
+            " So AdapterRegistryBuilder will be retired soon",
         ReplaceWith(
             "register( " +
-                    "viewHolder = ," +
-                    "layoutResource = ," +
-                    "onViewHolderCreated = ," +
-                    "onViewHolderBound = ," +
-                    "onViewHolderBoundWithPayload = " +
-                    ")"
+                "viewHolder = ," +
+                "layoutResource = ," +
+                "onViewHolderCreated = ," +
+                "onViewHolderBound = ," +
+                "onViewHolderBoundWithPayload = " +
+                ")"
         )
     )
     fun register(
@@ -108,7 +109,6 @@ abstract class AdapterFactory<T : Any, A : Adapter<RecyclerViewHolder<T>>> {
         }
     }
 
-
     inline fun <reified P : T, reified VH : RecyclerViewHolder<P>> register(
         crossinline viewHolder: ViewHolderCreator<VH>,
         @LayoutRes
@@ -125,7 +125,6 @@ abstract class AdapterFactory<T : Any, A : Adapter<RecyclerViewHolder<T>>> {
 
         registerViewHolderFactory(layoutResource, viewHolderFactory)
 
-
         registerLayoutResource(itemType, layoutResource)
 
         onViewHolderCreated?.let {
@@ -136,7 +135,6 @@ abstract class AdapterFactory<T : Any, A : Adapter<RecyclerViewHolder<T>>> {
 
             registerViewHolderCreatedListener(layoutResource, onViewHolderCreatedListener)
         }
-
 
         onBindBindViewHolder?.let {
             val onBindViewHolderListener = object : OnBindViewHolder<T, RecyclerViewHolder<T>> {

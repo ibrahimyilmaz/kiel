@@ -14,12 +14,13 @@ class MessageRepository {
         if (messages.isEmpty()) {
             delay(500)
             (0..SAMPLE_MESSAGE_COUNT).forEach {
-                messages[Message(
+                val message = Message(
                     it.toLong(),
                     SENDERS[it % SENDERS.size],
                     TITLE[it % TITLE.size],
                     CONTENT[it % CONTENT.size]
-                )] = MessageSelectionState.Normal
+                )
+                messages[message] = MessageSelectionState.Normal
             }
         }
 

@@ -12,7 +12,7 @@ import org.mockito.junit.MockitoJUnitRunner
 class AdapterRegistryBuilderTest {
 
     @Test(expected = IllegalArgumentException::class)
-    fun `Should throw an Illegal Argument Exception when view type is not provided`() {
+    fun `Should throw Illegal Argument Exception when view type is missing`() {
         // GIVEN
         val recyclerViewAdapterRegistryBuilder =
             AdapterRegistryBuilder<Any>().apply {
@@ -25,7 +25,7 @@ class AdapterRegistryBuilderTest {
     }
 
     @Test(expected = IllegalArgumentException::class)
-    fun `Should throw an Illegal Argument Exception when layout resource is not provided`() {
+    fun `Should throw Illegal Argument Exception when layout resource is missing`() {
         // GIVEN
         val recyclerViewAdapterRegistryBuilder =
             AdapterRegistryBuilder<Any>().apply {
@@ -38,7 +38,7 @@ class AdapterRegistryBuilderTest {
     }
 
     @Test(expected = IllegalArgumentException::class)
-    fun `Should throw an Illegal Argument Exception when viewHolder constructor is not provided`() {
+    fun `Should throw Illegal Argument Exception when viewHolder constructor is missing`() {
         // GIVEN
         val recyclerViewAdapterRegistryBuilder =
             AdapterRegistryBuilder<Any>().apply {
@@ -51,7 +51,7 @@ class AdapterRegistryBuilderTest {
     }
 
     @Test
-    fun `Should return a RecyclerViewAdapterRegistry instance when type, layoutResource and viewHolder constructor are provided`() {
+    fun `Should build RecyclerViewAdapterRegistry`() {
         // GIVEN
         val expectedRecyclerViewAdapterRegistry =
             RecyclerViewAdapterRegistry(
@@ -81,7 +81,7 @@ class AdapterRegistryBuilderTest {
     }
 
     @Test
-    fun `Should return a RecyclerViewAdapterRegistry with OnViewHolderCreated listener when it is provided`() {
+    fun `Should build RecyclerViewAdapterRegistry with OnViewHolderCreated`() {
         // GIVEN
         val onViewHolderCreatedListener = mock<OnViewHolderCreated<TestRecyclerViewHolder>>()
 
@@ -101,7 +101,7 @@ class AdapterRegistryBuilderTest {
     }
 
     @Test
-    fun `Should return a RecyclerViewAdapterRegistry with OnViewHolderBound listener when it is provided`() {
+    fun `Should build RecyclerViewAdapterRegistry with OnViewHolderBound`() {
         // GIVEN
         val onViewHolderBoundListener = mock<OnBindViewHolder<Any, TestRecyclerViewHolder>>()
 
@@ -121,7 +121,7 @@ class AdapterRegistryBuilderTest {
     }
 
     @Test
-    fun `Should return a RecyclerViewAdapterRegistry with OnViewHolderBoundWithPayload listener when it is provided`() {
+    fun `Should build RecyclerViewAdapterRegistry with OnViewHolderBoundWithPayload`() {
         // GIVEN
         val onViewHolderBoundWithPayloadListener =
             mock<OnBindViewHolderWithPayload<Any, TestRecyclerViewHolder>>()

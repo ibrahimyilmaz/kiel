@@ -8,10 +8,10 @@ import com.bumptech.glide.Glide
 import me.ibrahimyilmaz.kiel.adapter.RecyclerViewAdapter.Companion.adapterOf
 import me.ibrahimyilmaz.kiel.samples.R
 import me.ibrahimyilmaz.kiel.samples.adapter.model.MessageViewState
-import me.ibrahimyilmaz.kiel.samples.adapter.model.MessageViewState.Text
 import me.ibrahimyilmaz.kiel.samples.adapter.model.MessageViewState.Image
 import me.ibrahimyilmaz.kiel.samples.adapter.model.MessageViewState.Poll
 import me.ibrahimyilmaz.kiel.samples.adapter.model.MessageViewState.Poll.PollOption
+import me.ibrahimyilmaz.kiel.samples.adapter.model.MessageViewState.Text
 import me.ibrahimyilmaz.kiel.samples.adapter.viewholder.ImageMessageViewHolder
 import me.ibrahimyilmaz.kiel.samples.adapter.viewholder.PollMessageViewHolder
 import me.ibrahimyilmaz.kiel.samples.adapter.viewholder.PollOptionViewHolder
@@ -61,7 +61,7 @@ class AdapterExampleFragment : Fragment(R.layout.fragment_adapter_example) {
                             register(
                                 layoutResource = R.layout.adapter_poll_option_item,
                                 viewHolder = ::PollOptionViewHolder,
-                                onBindBindViewHolder = { pollOptionViewHolder, i, pollOption ->
+                                onBindBindViewHolder = { pollOptionViewHolder, _, pollOption ->
                                     pollOptionViewHolder.pollOption.text = pollOption.text
                                 }
                             )

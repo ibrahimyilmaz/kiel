@@ -3,10 +3,6 @@ package me.ibrahimyilmaz.kiel.core
 import android.view.ViewGroup
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
-import me.ibrahimyilmaz.kiel.core.RecyclerViewHolder
-import me.ibrahimyilmaz.kiel.core.RecyclerViewHolderFactory
-import me.ibrahimyilmaz.kiel.core.RecyclerViewHolderManager
-import me.ibrahimyilmaz.kiel.core.RecyclerViewHolderRenderer
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.InjectMocks
@@ -17,13 +13,13 @@ import org.mockito.junit.MockitoJUnitRunner
 class RecyclerViewHolderManagerTest {
 
     @Mock
-    private lateinit var recyclerViewHolderFactory: RecyclerViewHolderFactory<Any, RecyclerViewHolder<Any>>
+    private lateinit var viewHolderFactory: RecyclerViewHolderFactory<Any, RecyclerViewHolder<Any>>
 
     @Mock
     private lateinit var renderer: RecyclerViewHolderRenderer<Any, RecyclerViewHolder<Any>>
 
     @InjectMocks
-    private lateinit var recyclerViewHolderManager: RecyclerViewHolderManager<Any, RecyclerViewHolder<Any>>
+    private lateinit var viewHolderManager: RecyclerViewHolderManager<Any, RecyclerViewHolder<Any>>
 
     @Test
     fun `Should instantiate ViewHolder with provided viewType and parent`() {
@@ -32,10 +28,10 @@ class RecyclerViewHolderManagerTest {
         val viewType = 1
 
         // WHEN
-        recyclerViewHolderManager.instantiate(parent, viewType)
+        viewHolderManager.instantiate(parent, viewType)
 
         // THEN
-        verify(recyclerViewHolderFactory).instantiate(parent, viewType)
+        verify(viewHolderFactory).instantiate(parent, viewType)
     }
 
     @Test
@@ -46,7 +42,7 @@ class RecyclerViewHolderManagerTest {
         val item = mock<Any>()
 
         // WHEN
-        recyclerViewHolderManager.onBindViewHolder(viewHolder, position, item)
+        viewHolderManager.onBindViewHolder(viewHolder, position, item)
 
         // THEN
         verify(renderer).renderViewHolder(viewHolder, position, item)
@@ -61,7 +57,7 @@ class RecyclerViewHolderManagerTest {
         val payloads = mock<List<Any>>()
 
         // WHEN
-        recyclerViewHolderManager.onBindViewHolder(viewHolder, position, item, payloads)
+        viewHolderManager.onBindViewHolder(viewHolder, position, item, payloads)
 
         // THEN
         verify(renderer).renderViewHolder(viewHolder, position, item, payloads)
@@ -73,7 +69,7 @@ class RecyclerViewHolderManagerTest {
         val item = mock<Any>()
 
         // WHEN
-        recyclerViewHolderManager.getItemViewType(item)
+        viewHolderManager.getItemViewType(item)
 
         // THEN
         verify(renderer).getItemViewType(item)
