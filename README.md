@@ -117,7 +117,7 @@ val recyclerViewAdapter = adapterOf<MessageViewState> {
 
                         if (oldItem.selectionState != newItem.selectionState) {
                             diffBundle.putParcelable(
-                                MessageViewHolder.KEY_SELECTION,
+                                TextMessageViewHolder.KEY_SELECTION,
                                 newItem.selectionState
                             )
                         }

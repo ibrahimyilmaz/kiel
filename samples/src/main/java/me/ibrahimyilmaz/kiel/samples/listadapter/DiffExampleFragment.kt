@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import me.ibrahimyilmaz.kiel.adapter.RecyclerViewAdapter.Companion.adapterOf
 import me.ibrahimyilmaz.kiel.samples.R
 import me.ibrahimyilmaz.kiel.samples.listadapter.model.MessageListItemViewState
+import me.ibrahimyilmaz.kiel.samples.listadapter.model.MessageSelectionState
 import me.ibrahimyilmaz.kiel.samples.listadapter.viewholder.MessageViewHolder
 
 class DiffExampleFragment :
@@ -71,7 +72,7 @@ class DiffExampleFragment :
 
                 if (oldItem.selectionState != newItem.selectionState) {
                     diffBundle.putParcelable(
-                        MessageViewHolder.KEY_SELECTION,
+                        KEY_SELECTION,
                         newItem.selectionState
                     )
                 }
@@ -88,6 +89,20 @@ class DiffExampleFragment :
                     viewModel.onItemLongClicked(item)
                     true
                 }
+            },
+            onBindBindViewHolder = { messageViewHolder, _, messageListItemViewState ->
+                messageViewHolder.binding.senderText.text = messageListItemViewState.message.sender
+                messageViewHolder.binding.contentText.text =
+                    messageListItemViewState.message.content
+                messageViewHolder.binding.imageLetter.text =
+                    messageListItemViewState.message.sender.subSequence(0, 1)
+
+                messageViewHolder.setSelectionState(messageListItemViewState.selectionState)
+            },
+            onBindViewHolderWithPayload = { messageViewHolder, _, _, payloads ->
+                (payloads.first() as? Bundle)?.getParcelable<MessageSelectionState>(
+                    KEY_SELECTION
+                )?.let(messageViewHolder::setSelectionState)
             }
         )
     }
@@ -97,5 +112,9 @@ class DiffExampleFragment :
     override fun onActionModeDestroyed() {
         actionMode = null
         viewModel.onActionDeleteModeFinished()
+    }
+
+    private companion object {
+        const val KEY_SELECTION = "KEY_SELECTION"
     }
 }
