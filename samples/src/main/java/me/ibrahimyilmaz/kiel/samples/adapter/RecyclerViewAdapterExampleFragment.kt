@@ -1,7 +1,6 @@
 package me.ibrahimyilmaz.kiel.samples.adapter
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
@@ -29,21 +28,19 @@ class RecyclerViewAdapterExampleFragment : Fragment(R.layout.fragment_recyclervi
 
         val recyclerViewAdapter =
             adapterOf<MessageViewState> {
-                register {
-                    type { Text::class.java }
-                    layoutResource { R.layout.adapter_message_text_item }
-                    viewHolder(::TextMessageViewHolder)
-                    onViewHolderBound<Text, TextMessageViewHolder> { vh, _, it ->
-                        vh.messageText.text = it.text
-                        vh.sentAt.text = it.sentAt
+                register(
+                    layoutResource = R.layout.adapter_message_text_item,
+                    viewHolder = ::TextMessageViewHolder,
+                    onBindBindViewHolder = { vh, _, text ->
+                        vh.messageText.text = text.text
+                        vh.sentAt.text = text.sentAt
                     }
-                }
+                )
 
-                register {
-                    type { Image::class.java }
-                    layoutResource { R.layout.adapter_message_image_item }
-                    viewHolder(::ImageMessageViewHolder)
-                    onViewHolderBound<Image, ImageMessageViewHolder> { vh, i, item ->
+                register(
+                    layoutResource = R.layout.adapter_message_image_item,
+                    viewHolder = ::ImageMessageViewHolder,
+                    onBindBindViewHolder = { vh, _, item ->
                         vh.messageText.text = item.text
                         vh.sentAt.text = item.sentAt
 
@@ -51,38 +48,30 @@ class RecyclerViewAdapterExampleFragment : Fragment(R.layout.fragment_recyclervi
                             .load(item.imageUrl)
                             .into(vh.messageImage)
                     }
-                }
+                )
 
-                register {
-                    type { Poll::class.java }
-                    layoutResource { R.layout.adapter_message_poll_item }
-                    viewHolder(::PollMessageViewHolder)
+                register(
+                    layoutResource = R.layout.adapter_message_poll_item,
+                    viewHolder = ::PollMessageViewHolder,
+                    onBindBindViewHolder = { vh, _, poll ->
+                        vh.pollTitle.text = poll.text
+                        vh.sentAt.text = poll.sentAt
 
-                    onViewHolderCreated<PollMessageViewHolder> {
-                        Log.d("TEST!", "onViewHolderCreated")
-                    }
-
-                    onViewHolderBound<Poll, PollMessageViewHolder> { viewHolder, position, poll ->
-                        viewHolder.pollTitle.text = poll.text
-                        viewHolder.sentAt.text = poll.sentAt
-
-                        val pollOptionsAdapter =
-                            adapterOf<PollOption> {
-                                register {
-                                    type { PollOption::class.java }
-                                    layoutResource { R.layout.adapter_poll_option_item }
-                                    viewHolder(::PollOptionViewHolder)
-                                    onViewHolderBound<PollOption, PollOptionViewHolder> { vh, _, item ->
-                                        vh.pollOption.text = item.text
-                                    }
+                        val pollOptionsAdapter = adapterOf<PollOption> {
+                            register(
+                                layoutResource = R.layout.adapter_poll_option_item,
+                                viewHolder = ::PollOptionViewHolder,
+                                onBindBindViewHolder = { pollOptionViewHolder, i, pollOption ->
+                                    pollOptionViewHolder.pollOption.text = pollOption.text
                                 }
-                            }
+                            )
+                        }
 
-                        viewHolder.pollOptionsRecyclerView.adapter = pollOptionsAdapter
+                        vh.pollOptionsRecyclerView.adapter = pollOptionsAdapter
 
                         pollOptionsAdapter.setData(poll.options)
                     }
-                }
+                )
             }
 
         messagesRecyclerView.adapter =

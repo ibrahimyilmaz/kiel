@@ -11,16 +11,16 @@ class RecyclerViewHolderRendererTest {
 
     private lateinit var itemTypes: SimpleArrayMap<Class<*>, Int>
 
-    private lateinit var viewHolderBoundListeners: SimpleArrayMap<Class<*>, OnViewHolderBound<Any, RecyclerViewHolder<Any>>>
+    private lateinit var bindViewHolderListeners: SimpleArrayMap<Class<*>, OnBindViewHolder<Any, RecyclerViewHolder<Any>>>
 
-    private lateinit var viewHolderBoundWithPayloadListeners: SimpleArrayMap<Class<*>, OnViewHolderBoundWithPayload<Any, RecyclerViewHolder<Any>>>
+    private lateinit var viewHolderBoundWithPayloadListeners: SimpleArrayMap<Class<*>, OnBindViewHolderWithPayload<Any, RecyclerViewHolder<Any>>>
 
     private lateinit var recyclerViewHolderRenderer: RecyclerViewHolderRenderer<Any, RecyclerViewHolder<Any>>
 
     @Before
     fun setUp() {
         itemTypes = SimpleArrayMap()
-        viewHolderBoundListeners = SimpleArrayMap()
+        bindViewHolderListeners = SimpleArrayMap()
         viewHolderBoundWithPayloadListeners = SimpleArrayMap()
     }
 
@@ -33,7 +33,7 @@ class RecyclerViewHolderRendererTest {
         recyclerViewHolderRenderer =
             RecyclerViewHolderRenderer(
                 itemTypes,
-                viewHolderBoundListeners,
+                bindViewHolderListeners,
                 viewHolderBoundWithPayloadListeners
             )
         // WHEN
@@ -49,7 +49,7 @@ class RecyclerViewHolderRendererTest {
         recyclerViewHolderRenderer =
             RecyclerViewHolderRenderer(
                 itemTypes,
-                viewHolderBoundListeners,
+                bindViewHolderListeners,
                 viewHolderBoundWithPayloadListeners
             )
         val viewHolder = mock<RecyclerViewHolder<Any>>()
@@ -66,12 +66,12 @@ class RecyclerViewHolderRendererTest {
     @Test
     fun `Should notify the ViewHolderBound listener when the viewHolder is rendered with item and position`() {
         // GIVEN
-        val onBoundListener = mock<OnViewHolderBound<Any, RecyclerViewHolder<Any>>>()
+        val onBoundListener = mock<OnBindViewHolder<Any, RecyclerViewHolder<Any>>>()
         setUpViewHolderBoundListeners(Any(), onBoundListener)
         recyclerViewHolderRenderer =
             RecyclerViewHolderRenderer(
                 itemTypes,
-                viewHolderBoundListeners,
+                bindViewHolderListeners,
                 viewHolderBoundWithPayloadListeners
             )
         val viewHolder = mock<RecyclerViewHolder<Any>>()
@@ -91,7 +91,7 @@ class RecyclerViewHolderRendererTest {
         recyclerViewHolderRenderer =
             RecyclerViewHolderRenderer(
                 itemTypes,
-                viewHolderBoundListeners,
+                bindViewHolderListeners,
                 viewHolderBoundWithPayloadListeners
             )
         val viewHolder = mock<RecyclerViewHolder<Any>>()
@@ -109,12 +109,12 @@ class RecyclerViewHolderRendererTest {
     @Test
     fun `Should notify the ViewHolderBoundWithPayload listener when the viewHolder is rendered with item, position and payload `() {
         // GIVEN
-        val onBoundListener = mock<OnViewHolderBoundWithPayload<Any, RecyclerViewHolder<Any>>>()
+        val onBoundListener = mock<OnBindViewHolderWithPayload<Any, RecyclerViewHolder<Any>>>()
         setUpViewHolderBoundWithPayloadListeners(Any(), onBoundListener)
         recyclerViewHolderRenderer =
             RecyclerViewHolderRenderer(
                 itemTypes,
-                viewHolderBoundListeners,
+                bindViewHolderListeners,
                 viewHolderBoundWithPayloadListeners
             )
         val viewHolder = mock<RecyclerViewHolder<Any>>()
@@ -131,14 +131,14 @@ class RecyclerViewHolderRendererTest {
 
     private fun setUpViewHolderBoundListeners(
         item: Any,
-        listener: OnViewHolderBound<Any, RecyclerViewHolder<Any>>
+        listener: OnBindViewHolder<Any, RecyclerViewHolder<Any>>
     ) {
-        viewHolderBoundListeners.put(item.javaClass, listener)
+        bindViewHolderListeners.put(item.javaClass, listener)
     }
 
     private fun setUpViewHolderBoundWithPayloadListeners(
         item: Any,
-        listener: OnViewHolderBoundWithPayload<Any, RecyclerViewHolder<Any>>
+        listener: OnBindViewHolderWithPayload<Any, RecyclerViewHolder<Any>>
     ) {
         viewHolderBoundWithPayloadListeners.put(item.javaClass, listener)
     }

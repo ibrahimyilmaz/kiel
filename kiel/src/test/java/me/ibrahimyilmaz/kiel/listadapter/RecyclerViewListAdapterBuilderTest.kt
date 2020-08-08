@@ -7,11 +7,11 @@ import org.junit.Test
 
 class RecyclerViewListAdapterBuilderTest {
 
-    private lateinit var recyclerViewListAdapterBuilder: RecyclerViewListAdapterBuilder<Any>
+    private lateinit var recyclerViewListAdapterBuilder: RecyclerViewListAdapterFactory<Any>
 
     @Before
     fun setUp() {
-        recyclerViewListAdapterBuilder = RecyclerViewListAdapterBuilder()
+        recyclerViewListAdapterBuilder = RecyclerViewListAdapterFactory()
     }
 
     @Test
@@ -24,7 +24,7 @@ class RecyclerViewListAdapterBuilderTest {
         }
 
         // WHEN
-        val adapter = recyclerViewListAdapterBuilder.build()
+        val adapter = recyclerViewListAdapterBuilder.create()
 
         // THEN
         assertThat(adapter).isInstanceOf(RecyclerViewListAdapter::class.java)

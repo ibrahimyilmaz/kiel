@@ -57,8 +57,8 @@ class RecyclerViewListAdapter<T : Any, VH : RecyclerViewHolder<T>>(
 
         @JvmStatic
         inline fun <T : Any> listAdapterOf(
-            function: RecyclerViewListAdapterBuilder<T>.() -> Unit
+            function: RecyclerViewListAdapterFactory<T>.() -> Unit
         ): RecyclerViewListAdapter<T, RecyclerViewHolder<T>> =
-            RecyclerViewListAdapterBuilder<T>().apply(function).build()
+            RecyclerViewListAdapterFactory<T>().apply(function).create()
     }
 }

@@ -66,8 +66,8 @@ class RecyclerViewAdapter<T : Any, VH : RecyclerViewHolder<T>> private construct
 
         @JvmStatic
         inline fun <T : Any> adapterOf(
-            function: RecyclerViewAdapterBuilder<T>.() -> Unit
+            function: RecyclerViewAdapterFactory<T>.() -> Unit
         ): RecyclerViewAdapter<T, RecyclerViewHolder<T>> =
-            RecyclerViewAdapterBuilder<T>().apply(function).build()
+            RecyclerViewAdapterFactory<T>().apply(function).create()
     }
 }

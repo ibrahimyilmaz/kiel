@@ -65,18 +65,17 @@ class RecyclerViewListAdapterExampleFragment :
 
     private val messageListAdapter = listAdapterOf<MessageListItemViewState> {
         itemDiffUtil(::MessageDiffUtilItemCallback)
-        register {
-            type { MessageListItemViewState::class.java }
-            layoutResource { R.layout.adapter_message_list_item }
-            viewHolder(::MessageViewHolder)
-            onViewHolderCreated<MessageViewHolder> { vh ->
+        register(
+            layoutResource = R.layout.adapter_message_list_item,
+            viewHolder = ::MessageViewHolder,
+            onViewHolderCreated = { vh ->
                 vh.itemView.setOnLongClickListener {
                     val item = vh.boundItem ?: return@setOnLongClickListener false
                     viewModel.onItemLongClicked(item)
                     true
                 }
             }
-        }
+        )
     }
 
     override fun onDeleteActionClicked() = viewModel.onDeleteActionClicked()
