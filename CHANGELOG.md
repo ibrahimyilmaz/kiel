@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ### Development
+
+### Tillamook(1.1.0)
 - ktlint integration.
 - composable diff introduced.
 - AdapterRegistryBuilder deprecated.
