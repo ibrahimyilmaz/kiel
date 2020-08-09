@@ -29,7 +29,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    buildFeatures {
+        viewBinding true
+    }
 }
+
+repositories {
+    maven { url "https://dl.bintray.com/vitorhugods/AvatarView" }
+}
+
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
@@ -41,11 +50,21 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$versions.navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$versions.navigationVersion"
     implementation "androidx.recyclerview:recyclerview:$versions.recyclerViewVersion"
+    def lifecycle_version = "2.2.0-rc03"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+
     implementation project(path: ':kiel')
     // Glide
     implementation "com.github.bumptech.glide:glide:$versions.glideVersion"
     implementation "com.github.florent37:glidepalette:$versions.glidePaletteVersion"
     kapt "com.github.bumptech.glide:compiler:$versions.glideVersion"
+
+    //CircleImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+
 
     testImplementation "junit:junit:$versions.junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$versions.androidxTestJunit"

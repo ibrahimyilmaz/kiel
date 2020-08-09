@@ -3,11 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/dataSourceExample">
+    app:startDestination="@id/adapterOfExample">
 
     <fragment
-        android:id="@+id/dataSourceExample"
-        android:name="me.ibrahimyilmaz.kiel.samples.adapter.RecyclerViewAdapterExampleFragment"
-        android:label="@string/fragment_recyclerviewadapter_example"
-        tools:layout="@layout/fragment_recyclerviewadapter_example" />
+        android:id="@+id/adapterOfExample"
+        android:name="me.ibrahimyilmaz.kiel.samples.adapter.AdapterExampleFragment"
+        android:label="@string/fragment_adapter_example"
+        tools:layout="@layout/fragment_adapter_example" />
+
+    <fragment
+        android:id="@+id/listAdapterOfExample"
+        android:name="me.ibrahimyilmaz.kiel.samples.listadapter.DiffExampleFragment"
+        android:label="@string/fragment_diff_example"
+        tools:layout="@layout/fragment_diff_example" />
 </navigation>
