@@ -17,6 +17,7 @@ But now, Kiel may help us to get rid of these problems.
 
 #### Basic Usage:
 
+##### adapterOf
 ```kt
  val recyclerViewAdapter = adapterOf<Text> {
                 register(
@@ -38,13 +39,35 @@ But now, Kiel may help us to get rid of these problems.
  recyclerView.adapter = recyclerViewAdapter
  ```
 
+##### pagingDataAdapterOf
+```kt
+ val pagingDataAdapterOf = pagingDataAdapterOf<Text> {
+                register(
+                    layoutResource = R.layout.adapter_message_text_item,
+                    viewHolder = ::TextMessageViewHolder,
+                    onViewHolderCreated = { vh->
+                       //you may handle your on click listener
+                       vh.itemView.setOnClickListener {
+
+                       }
+                    },
+                    onBindViewHolder = { vh, _, it ->
+                        vh.messageText.text = it.text
+                        vh.sentAt.text = it.sentAt
+                    }
+                )
+     }
+
+ recyclerView.adapter = recyclerViewAdapter
+ ```
+
+
 #### Different View Types:
 
-You may register different `ViewHolder`s.
+You may register different `ViewHolder`s to your adapters.
 
 ```kt
- val recyclerViewAdapter = adapterOf<MessageViewState> {
-                register(
+              register(
                     layoutResource = R.layout.adapter_message_text_item,
                     viewHolder = ::TextMessageViewHolder,
                     onBindViewHolder = { vh, _, it ->
@@ -65,10 +88,6 @@ You may register different `ViewHolder`s.
                             .into(vh.messageImage)
                     }
                 )
- }
-
-
-recyclerView.adapter = recyclerViewAdapter
 ```
 #### Handling Events:
 
@@ -101,11 +120,37 @@ You can handle the events in the same way how you did it before.
 
 recyclerView.adapter = recyclerViewAdapter
 ```
+#### View Binding:
 
+As `ViewHolder` instance is accessible in:
+- `onViewHolderCreated`
+- `onBindViewHolder`
+- `onBindViewHolderWithPayload`
+
+You may define your ViewBinding in your ViewHolder class and you can easily reach it:
+
+```kt
+
+class TextMessageViewHolder(view: View) : RecyclerViewHolder<Text>(view) {
+    val binding = AdapterTextItemBinding.bind(view)
+}
+
+val recyclerViewAdapter = adapterOf<Text> {
+                register(
+                    layoutResource = R.layout.adapter_message_text_it,
+                    viewHolder = ::TextMessageViewHolder,
+                    onViewHolderCreated = { vh->
+                       vh.binding.
+                    },
+                    onBindViewHolder = { vh, _, it ->
+                       vh.binding.messageText.text = it.text
+                       vh.binding.sentAt.text = it.sentAt
+                    }
+                )
+ }
+```
 
 #### DiffUtil:
-
-You may provide your custom `DiffUtil.ItemCallback` by extending `RecyclerDiffUtilCallback` with `diffUtilCallback`:
 
 ```kt
 val recyclerViewAdapter = adapterOf<MessageViewState> {
