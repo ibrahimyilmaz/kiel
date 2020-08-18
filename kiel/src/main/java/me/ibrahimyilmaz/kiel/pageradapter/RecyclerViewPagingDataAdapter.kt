@@ -1,17 +1,16 @@
-package me.ibrahimyilmaz.kiel.adapter
+package me.ibrahimyilmaz.kiel.pageradapter
 
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil.ItemCallback
-import androidx.recyclerview.widget.ListAdapter
-import me.ibrahimyilmaz.kiel.core.AdapterBuilder
 import me.ibrahimyilmaz.kiel.core.RecyclerViewHolder
 import me.ibrahimyilmaz.kiel.core.RecyclerViewHolderManager
 import me.ibrahimyilmaz.kiel.core.RecyclerViewItemCallback
 
-class RecyclerViewAdapter<T : Any, VH : RecyclerViewHolder<T>>(
+class RecyclerViewPagingDataAdapter<T : Any, VH : RecyclerViewHolder<T>>(
     private val recyclerViewHolderManager: RecyclerViewHolderManager<T, VH>,
     diffUtilItemCallback: ItemCallback<T> = RecyclerViewItemCallback()
-) : ListAdapter<T, VH>(diffUtilItemCallback) {
+) : PagingDataAdapter<T, VH>(diffUtilItemCallback) {
 
     @Suppress("UNCHECKED_CAST")
     override fun onCreateViewHolder(
@@ -28,7 +27,7 @@ class RecyclerViewAdapter<T : Any, VH : RecyclerViewHolder<T>>(
     ) = recyclerViewHolderManager.onBindViewHolder(
         holder,
         position,
-        getItem(position)
+        checkNotNull(getItem(position))
     )
 
     override fun onBindViewHolder(
@@ -38,13 +37,15 @@ class RecyclerViewAdapter<T : Any, VH : RecyclerViewHolder<T>>(
     ) = recyclerViewHolderManager.onBindViewHolder(
         holder,
         position,
-        getItem(position),
+        checkNotNull(getItem(position)),
         payloads
     )
 
     override fun getItemViewType(
         position: Int
-    ) = recyclerViewHolderManager.getItemViewType(getItem(position))
+    ) = recyclerViewHolderManager.getItemViewType(
+        checkNotNull(getItem(position))
+    )
 
     companion object {
 
@@ -53,27 +54,12 @@ class RecyclerViewAdapter<T : Any, VH : RecyclerViewHolder<T>>(
             recyclerViewHolderManager: RecyclerViewHolderManager<T, VH>,
             diffUtilCallbackFactory: ItemCallback<T>?
         ) = diffUtilCallbackFactory?.let {
-            RecyclerViewAdapter(
+            RecyclerViewPagingDataAdapter(
                 recyclerViewHolderManager,
                 it
             )
-        } ?: RecyclerViewAdapter(
+        } ?: RecyclerViewPagingDataAdapter(
             recyclerViewHolderManager
         )
-
-        @Suppress("UNCHECKED_CAST")
-        @JvmStatic
-        @Deprecated(
-            "This function has been changed to be top level function." +
-                "Please use top level version of adapterOf",
-            ReplaceWith("me.ibrahimyilmaz.adapterOf"),
-            DeprecationLevel.ERROR
-        )
-        inline fun <T : Any> adapterOf(
-            adapterBuilder: AdapterBuilder<T>.() -> Unit
-        ): ListAdapter<T, RecyclerViewHolder<T>> =
-            AdapterBuilder<T>().apply(adapterBuilder).build(
-                RecyclerViewAdapterFactory()
-            ) as ListAdapter<T, RecyclerViewHolder<T>>
     }
 }
