@@ -1,6 +1,5 @@
 package me.ibrahimyilmaz.kiel.adapter
 
-import com.google.common.truth.Truth
 import com.google.common.truth.Truth.assertThat
 import me.ibrahimyilmaz.kiel.core.AdapterBuilder
 import me.ibrahimyilmaz.kiel.pageradapter.RecyclerViewPagingDataAdapter
