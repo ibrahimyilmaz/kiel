@@ -10,7 +10,7 @@ ext.versions = [
         ktlintPluginVersion       : '9.3.0',
 
         // kotlin
-        kotlin                    : '1.3.72',
+        kotlin                    : '1.4.0',
 
         // android
         multidexVersion           : '2.0.1',
