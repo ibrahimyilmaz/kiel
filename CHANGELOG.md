@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ### Development
-- Kotlin 1.4.0 migration
+- Kotlin 1.4.0 bump
 
 ### Tillamook(1.1.0)
 - ktlint integration.
