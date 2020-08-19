@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Development
 
+### Tahat(1.2.0)
+- pagingDataAdapter introduced.
+- Kotlin 1.4.0 bump
+
 ### Tillamook(1.1.0)
 - ktlint integration.
 - composable diff introduced.
