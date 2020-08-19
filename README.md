@@ -1,6 +1,6 @@
 ![build](https://github.com/ibrahimyilmaz/kiel/workflows/build/badge.svg)
 [ ![Download](https://api.bintray.com/packages/ibrahimyilmaz/kiel/kiel/images/download.svg) ](https://bintray.com/ibrahimyilmaz/kiel/kiel/_latestVersion)
-
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Kiel-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/8140)
 ## Kiel
 
 Kiel is a `RecyclerView.Adapter` with a minimalist and convenient Kotlin DSL which provides utility on top of Android's normal `RecyclerView.Adapter`.
