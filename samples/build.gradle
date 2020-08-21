@@ -7,7 +7,7 @@ android {
     compileSdkVersion versions.compileSdk
     defaultConfig {
         applicationId "me.ibrahimyilmaz.kiel.samples"
-        minSdkVersion versions.minSdk
+        minSdkVersion 19
         targetSdkVersion versions.compileSdk
         versionCode 1
         versionName "1.0"
