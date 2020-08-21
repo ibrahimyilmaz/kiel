@@ -8,7 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
-import me.ibrahimyilmaz.kiel.adapter.RecyclerViewAdapter.Companion.adapterOf
+import me.ibrahimyilmaz.kiel.adapterOf
 import me.ibrahimyilmaz.kiel.samples.R
 import me.ibrahimyilmaz.kiel.samples.listadapter.model.MessageListItemViewState
 import me.ibrahimyilmaz.kiel.samples.listadapter.model.MessageSelectionState
@@ -90,7 +90,7 @@ class DiffExampleFragment :
                     true
                 }
             },
-            onBindBindViewHolder = { messageViewHolder, _, messageListItemViewState ->
+            onBindViewHolder = { messageViewHolder, _, messageListItemViewState ->
                 messageViewHolder.binding.senderText.text = messageListItemViewState.message.sender
                 messageViewHolder.binding.contentText.text =
                     messageListItemViewState.message.content

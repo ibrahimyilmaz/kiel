@@ -109,7 +109,7 @@ class AdapterBuilder<T : Any> {
         @LayoutRes
         layoutResource: Int,
         noinline onViewHolderCreated: OnViewHolderCreated<VH>? = null,
-        noinline onBindBindViewHolder: OnBindViewHolder<P, VH>? = null,
+        noinline onBindViewHolder: OnBindViewHolder<P, VH>? = null,
         noinline onBindViewHolderWithPayload: OnBindViewHolderWithPayload<P, VH>? = null
     ) {
         val itemType = P::class.java
@@ -131,7 +131,7 @@ class AdapterBuilder<T : Any> {
             registerViewHolderCreatedListener(layoutResource, onViewHolderCreatedListener)
         }
 
-        onBindBindViewHolder?.let {
+        onBindViewHolder?.let {
             val onBindViewHolderListener = object : OnBindViewHolder<T, RecyclerViewHolder<T>> {
                 override fun invoke(viewHolder: RecyclerViewHolder<T>, position: Int, item: T) =
                     it(viewHolder as VH, position, item as P)
