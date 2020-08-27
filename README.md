@@ -1,6 +1,9 @@
 ![build](https://github.com/ibrahimyilmaz/kiel/workflows/build/badge.svg)
 [ ![Download](https://api.bintray.com/packages/ibrahimyilmaz/kiel/kiel/images/download.svg) ](https://bintray.com/ibrahimyilmaz/kiel/kiel/_latestVersion)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Kiel-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/8140)
+[![GitHub license](https://img.shields.io/github/license/ibrahimyilmaz/kiel)](https://github.com/ibrahimyilmaz/kiel/blob/develop/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/ibrahimyilmaz/kiel)](https://github.com/ibrahimyilmaz/kiel/issues)
+[![GitHub stars](https://img.shields.io/github/stars/ibrahimyilmaz/kiel)](https://github.com/ibrahimyilmaz/kiel/stargazers)
 ## Kiel
 
 Kiel is a `RecyclerView.Adapter` with a minimalistic and convenient Kotlin DSL which provides utility on top of Android's normal `RecyclerView.Adapter`.
@@ -186,6 +189,7 @@ Download
 ```groovy
 implementation 'me.ibrahimyilmaz:kiel:latestVersion'
 ```
+latestVersion = [ ![Download](https://api.bintray.com/packages/ibrahimyilmaz/kiel/kiel/images/download.svg) ](https://bintray.com/ibrahimyilmaz/kiel/kiel/_latestVersion)
 
 License
 -------
