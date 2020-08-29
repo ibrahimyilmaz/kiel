@@ -52,8 +52,10 @@ dependencies {
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 
     // Glide
-    implementation "com.github.bumptech.glide:glide:$versions.glideVersion"
-    implementation "com.github.florent37:glidepalette:$versions.glidePaletteVersion"
+    implementation ("com.github.bumptech.glide:glide:$versions.glideVersion")
+    implementation ("com.github.florent37:glidepalette:$versions.glidePaletteVersion"){
+        exclude group: 'com.android.support', module: 'support-compat'
+    }
     kapt "com.github.bumptech.glide:compiler:$versions.glideVersion"
 
     //CircleImageView
