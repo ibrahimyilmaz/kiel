@@ -14,7 +14,8 @@ Most of the time:
 - We found ourselves repeating same boilerplate code for `RecyclerView.Adapter`.
 - We have difficulty in handling `RecyclerView.Adapter` when there are many `viewTypes`.
 
-But now, Kiel may help us to get rid of these problems.
+But now, Kiel may help us to get rid of these problems. You may read the detailed story in
+[this](https://medium.com/swlh/build-better-and-clean-recyclerview-adapter-with-kiel-a129882c1e1) blog post.
 
 ## Usage:
 
