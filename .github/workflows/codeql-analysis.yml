@@ -19,7 +19,7 @@ jobs:
       matrix:
         # Override automatic language detection by changing the below list
         # Supported options are ['csharp', 'cpp', 'go', 'java', 'javascript', 'python']
-        language: []
+        language: [java]
         # ******************************* WARNING *********************************
         # CodeQL does not support any of the languages detected in your repository.
         # *************************************************************************
