@@ -8,14 +8,9 @@ import com.bumptech.glide.Glide
 import me.ibrahimyilmaz.kiel.adapterOf
 import me.ibrahimyilmaz.kiel.samples.R
 import me.ibrahimyilmaz.kiel.samples.adapter.model.MessageViewState
-import me.ibrahimyilmaz.kiel.samples.adapter.model.MessageViewState.Image
-import me.ibrahimyilmaz.kiel.samples.adapter.model.MessageViewState.Poll
+import me.ibrahimyilmaz.kiel.samples.adapter.model.MessageViewState.*
 import me.ibrahimyilmaz.kiel.samples.adapter.model.MessageViewState.Poll.PollOption
-import me.ibrahimyilmaz.kiel.samples.adapter.model.MessageViewState.Text
-import me.ibrahimyilmaz.kiel.samples.adapter.viewholder.ImageMessageViewHolder
-import me.ibrahimyilmaz.kiel.samples.adapter.viewholder.PollMessageViewHolder
-import me.ibrahimyilmaz.kiel.samples.adapter.viewholder.PollOptionViewHolder
-import me.ibrahimyilmaz.kiel.samples.adapter.viewholder.TextMessageViewHolder
+import me.ibrahimyilmaz.kiel.samples.adapter.viewholder.*
 import me.ibrahimyilmaz.kiel.samples.utils.MarginItemDecoration
 
 class AdapterExampleFragment : Fragment(R.layout.fragment_adapter_example) {
@@ -71,6 +66,33 @@ class AdapterExampleFragment : Fragment(R.layout.fragment_adapter_example) {
                     pollOptionsAdapter.submitList(poll.options)
                 }
             )
+
+            register(
+                layoutResource = R.layout.adapter_list_image_message_item,
+                viewHolder = ::ListImageMessageViewHolder,
+                onBindViewHolder = { vh, _, item ->
+                    vh.listTitle.text = item.text
+                    vh.sentAt.text = item.sentAt
+
+                    val adapter = adapterOf<Image> {
+                        register(
+                            layoutResource = R.layout.adapter_child_message_image_item,
+                            viewHolder = ::ImageMessageViewHolder,
+                            onBindViewHolder = { vh, _, item ->
+                                vh.messageText.text = item.text
+                                vh.sentAt.text = item.sentAt
+
+                                Glide.with(vh.messageImage)
+                                    .load(item.imageUrl)
+                                    .into(vh.messageImage)
+                            }
+                        )
+                    }
+
+                    vh.listRecyclerView.adapter = adapter
+                    adapter.submitList(item.images)
+                }
+            )
         }
 
         messagesRecyclerView.adapter =
@@ -81,6 +103,17 @@ class AdapterExampleFragment : Fragment(R.layout.fragment_adapter_example) {
                 resources.getDimension(R.dimen.padding_normal).toInt()
             )
         )
+
+        val images = mutableListOf<Image>()
+        for (i in 0..10) {
+            images.add(
+                Image(
+                    "Looks amazing, isn't it?",
+                    "https://upload.wikimedia.org/wikipedia/sco/thumb/7/7a/Manchester_United_FC_crest.svg/1200px-Manchester_United_FC_crest.svg.png",
+                    "09:10 AM"
+                )
+            )
+        }
         val data = listOf(
             Text(
                 "Hi David! I have landed to Earth! Human-kind is really interesting",
@@ -100,6 +133,11 @@ class AdapterExampleFragment : Fragment(R.layout.fragment_adapter_example) {
                     PollOption("Gustarium - Florence"),
                     PollOption("Donerci Mustafa - Berlin")
                 ),
+                "15:15 PM"
+            ),
+            ListImage(
+                "Where should I have my dinner?",
+                images,
                 "15:15 PM"
             )
         )

@@ -20,4 +20,10 @@ sealed class MessageViewState {
         val imageUrl: String,
         val sentAt: String
     ) : MessageViewState()
+
+    data class ListImage(
+        val text: String,
+        val images: List<Image>,
+        val sentAt: String
+    ) : MessageViewState()
 }
