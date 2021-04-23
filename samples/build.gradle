@@ -57,8 +57,6 @@ dependencies {
 
     //CircleImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
-
 
     testImplementation "junit:junit:$versions.junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$versions.androidxTestJunit"
