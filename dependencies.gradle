@@ -8,6 +8,7 @@ ext.versions = [
         gradleBuildTool           : '4.0.0',
         versionPlugin             : '0.28.0',
         ktlintPluginVersion       : '9.3.0',
+        gradleNexus               : '1.1.0',
 
         // kotlin
         kotlin                    : '1.4.0',
@@ -38,3 +39,4 @@ ext.versions = [
         mavenGradlePluginVersion  : '2.1',
         gradleBintrayPluginVersion: '1.8.4',
 ]
+

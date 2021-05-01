@@ -1,5 +1,5 @@
 ![build](https://github.com/ibrahimyilmaz/kiel/workflows/build/badge.svg)
-[ ![Download](https://api.bintray.com/packages/ibrahimyilmaz/kiel/kiel/images/download.svg) ](https://bintray.com/ibrahimyilmaz/kiel/kiel/_latestVersion)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.ibrahimyilmaz/kiel/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/io.github.ibrahimyilmaz/kiel)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Kiel-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/8140)
 [![GitHub license](https://img.shields.io/github/license/ibrahimyilmaz/kiel)](https://github.com/ibrahimyilmaz/kiel/blob/develop/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/ibrahimyilmaz/kiel)](https://github.com/ibrahimyilmaz/kiel/issues)
@@ -188,9 +188,10 @@ Download
 --------
 
 ```groovy
-implementation 'me.ibrahimyilmaz:kiel:latestVersion'
+implementation 'io.github.ibrahimyilmaz:kiel:latestVersion'
 ```
-latestVersion = [ ![Download](https://api.bintray.com/packages/ibrahimyilmaz/kiel/kiel/images/download.svg) ](https://bintray.com/ibrahimyilmaz/kiel/kiel/_latestVersion)
+
+latestVersion = `1.2.1`
 
 License
 -------
