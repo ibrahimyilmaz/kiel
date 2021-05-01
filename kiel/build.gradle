@@ -2,7 +2,13 @@ apply plugin: "org.jlleitschuh.gradle.ktlint-idea"
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply from: '../bintray.gradle'
+ext {
+    PUBLISH_GROUP_ID = 'io.github.ibrahimyilmaz'
+    PUBLISH_VERSION = '1.2.1'
+    PUBLISH_ARTIFACT_ID = 'kiel'
+}
+
+apply from: '../publish-module.gradle'
 
 android {
     compileSdkVersion versions.compileSdk

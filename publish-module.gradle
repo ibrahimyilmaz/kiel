@@ -1,0 +1,70 @@
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+task androidSourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    if (project.plugins.findPlugin("com.android.library")) {
+        from android.sourceSets.main.java.srcDirs
+        from android.sourceSets.main.kotlin.srcDirs
+    } else {
+        from sourceSets.main.java.srcDirs
+        from sourceSets.main.kotlin.srcDirs
+    }
+}
+
+artifacts {
+    archives androidSourcesJar
+}
+group = PUBLISH_GROUP_ID
+version = PUBLISH_VERSION
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                groupId PUBLISH_GROUP_ID
+                artifactId PUBLISH_ARTIFACT_ID
+                version PUBLISH_VERSION
+                if (project.plugins.findPlugin("com.android.library")) {
+                    from components.release
+                } else {
+                    artifact("$buildDir/libs/${project.getName()}-${version}.jar")
+                }
+
+                artifact androidSourcesJar
+
+                pom {
+                    name = PUBLISH_ARTIFACT_ID
+                    description = 'Kiel RecyclerView Adapters Builder'
+                    url = 'https://github.com/ibrahimyilmaz/kiel'
+                    licenses {
+                        license {
+                            name = 'Kiel License'
+                            url = 'https://github.com/ibrahimyilmaz/kiel/LICENSE'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'ibrahimyilmaz'
+                            name = 'Ibrahim Yilmaz'
+                            email = 'cs.ibrahimyilmaz@gmail.com'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:github.com/ibrahimyilmaz/kiel.git'
+                        developerConnection = 'scm:git:ssh://github.com/ibrahimyilmaz/kiel.git'
+                        url = 'https://github.com/ibrahimyilmaz/kiel'
+                    }
+                }
+            }
+        }
+    }
+}
+
+ext["signing.keyId"] = rootProject.ext["signing.keyId"]
+ext["signing.password"] = rootProject.ext["signing.password"]
+ext["signing.secretKeyRingFile"] = rootProject.ext["signing.secretKeyRingFile"]
+
+signing {
+    sign publishing.publications
+}
