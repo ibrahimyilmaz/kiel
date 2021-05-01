@@ -191,7 +191,7 @@ Download
 implementation 'io.github.ibrahimyilmaz:kiel:latestVersion'
 ```
 
-latestVersion = 1.2.1
+latestVersion = `1.2.1`
 
 License
 -------
