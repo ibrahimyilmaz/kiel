@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ### Development
+- Add MavenCentral Upload to Pipeline
 - Artifact MavenCentral Upload
 - Drop JCenter https://blog.gradle.org/jcenter-shutdown
 - Drop Jetifier.
